@@ -1,0 +1,221 @@
+{
+  "intents": [
+  {
+    "tag": "salam_pembuka",
+    "patterns": [
+      "halo",
+      "selamat pagi",
+      "assalamualaikum",
+      "pripun kabare",
+      "beremma kabere",
+      "hi admin",
+      "halo admin",
+      "spada",
+      "permisi"
+    ],
+    "responses": [
+      "Halo! Selamat datang di layanan chatbot SMP Nurul Islam. Ada yang bisa kami bantu mengenai informasi sekolah atau pendaftaran?"
+    ]
+  },
+  {
+    "tag": "terima_kasih",
+    "patterns": [
+      "terima kasih",
+      "makasih",
+      "suwun",
+      "mator sakalangkong",
+      "oke makasih ya",
+      "suwun sanget",
+      "mator kasta"
+    ],
+    "responses": [
+      "Sama-sama! Senang bisa membantu Anda. Jika ada pertanyaan lain, jangan ragu untuk bertanya kembali.",
+      "Dengan senang hati! Semoga informasi tersebut bermanfaat."
+    ]
+  },
+  {
+    "tag": "salam_penutup",
+    "patterns": [
+      "dadah",
+      "sampai jumpa",
+      "pamit",
+      "sudah cukup",
+      "wes mari",
+      "ampon mareh",
+      "wassalamualaikum"
+    ],
+    "responses": [
+      "Terima kasih telah menghubungi kami. Semoga harimu menyenangkan!",
+      "Sampai jumpa lagi! Wassalamualaikum."
+    ]
+  },
+  {
+    "tag": "fallback",
+    "patterns": [
+      "kamu siapa",
+      "makan apa",
+      "info harga bakso",
+      "tes tes",
+      "ngomong apa sih"
+    ],
+    "responses": [
+      "Maaf, saat ini saya hanya bisa memberikan informasi terkait profil SMP Nurul Islam, syarat pendaftaran, visi-misi, dan fasilitas sekolah. Bisa tolong ulangi pertanyaan Anda yang berkaitan dengan sekolah?"
+    ]
+  },
+    {
+      "tag": "syarat",
+      "patterns": [
+        "apa saja syarat pendaftaran",
+        "syarat pendaftaran apa saja",
+        "syaratna pendaftaran apah benyakna",
+        "syarate ndhaptar opo wae"
+      ],
+      "responses": [
+        "Syarat pendaftaran meliputi: mengisi formulir pendaftaran, fotocopy ijazah atau SKL, fotocopy Kartu Keluarga, akta kelahiran, fotocopy KTP orang tua, pas foto ukuran3 x 4 latar belakang merah, serta fotocopy KIP atau SKTM (jika memiliki)."
+      ]
+    },
+    {
+      "tag": "foto",
+      "patterns": [
+        "foto ukuran berapa",
+        "foto ukuran apa",
+        "foto se berempa",
+        "ukuran foto piro"
+      ],
+      "responses": [
+        "Pas foto yang diperlukan berukuran 3x4 dengan latar belakang merah."
+      ]
+    },
+    {
+      "tag": "formulir",
+      "patterns": [
+        "formulir pendaftaran diisi dimana",
+        "formulir diisi dimana",
+        "formulir ndhaptar eisi dimma",
+        "formulir diisi neng ndi"
+      ],
+      "responses": [
+        "Formulir pendaftaran diisi secara langsung saat proses pendaftaran di sekolah."
+      ]
+    },
+    {
+      "tag": "ijazah",
+      "patterns": [
+        "berapa fotokopi ijazah",
+        "fotokopi ijazah berapa lembar",
+        "ijazah e fotokopi berempa",
+        "ijazah difotokopi piro"
+      ],
+      "responses": [
+        "Fotocopy ijazah sebanyak 3 lembar. Jika belum tersedia, dapat diganti dengan fotocopy SKL."
+      ]
+    },
+    {
+      "tag": "skl",
+      "patterns": [
+        "berapa fotokopi skl",
+        "skl fotokopi berapa",
+        "skl e fotokopi berempa", 
+        "ijazah difotokopi piro"
+      ],
+      "responses": [
+        "Fotocopy SKL (Surat Keterangan Lulus) sebanyak 3 lembar."
+      ]
+    },
+    {
+      "tag": "kk",
+      "patterns": [
+        "berapa fotokopi kartu kelurga",
+        "kartu keluarga fotokopi berapa",
+        "kk e fotokopi berempa",
+        "kk difotokopi piro"
+      ],
+      "responses": [
+        "Fotocopy KK(Kartu Keluarga) sebanyak 1 lembar."
+      ]
+    },
+    {
+      "tag": "akta",
+      "patterns": [
+        "berapa fotokopi akta kelahiran",
+        "akta lahir fotokopi berapa",
+        "akta kelahiran e fotokopi berempa",
+        "akta lahir difotokopi piro"
+      ],
+      "responses": [
+        "Fotocopy akta kelahiran sebanyak 1 lembar."
+      ]
+    },
+    {
+      "tag": "ktp_orangtua",
+      "patterns": [
+        "berapa fotokopi ktp orang tua",
+        "ktp orang tua fotokopi berapa",
+        "ktp orang tua e fotokopi berempa",
+        "ktp orang tua difotokopi piro"
+      ],
+      "responses": [
+        "Fotocopy KTP ayah dan ibu masing masing sebanyak 2 lembar."
+      ]
+    },
+    {
+      "tag": "kip",
+      "patterns": [
+        "apakah perlu fotokopi kip",
+        "perlu fotokopi kip atau tidak",
+        "kip perlu e fotokopi ta"
+      ],
+      "responses": [
+        "Fotocopy KIP diperlukan jika calon peserta didik baru memiliki Kartu Indonesia Pintar."
+      ]
+    },
+{
+      "tag": "sktm",
+      "patterns": [
+        "apakah perlu fotokopi sktm",
+        "perlu fotokopi sktm atau tidak",
+        "sktm perlu e fotokopi ta",
+        "fotokopi sktm perlu ora"
+      ],
+      "responses": [
+        "Fotocopy SKTM diperlukan jika calon peserta didik baru memiliki Surat Keterangan Tidak Mampu."
+      ]
+    },
+    {
+      "tag": "cara_mendaftar",
+      "patterns": [
+        "bagaimana cara mendaftar",
+        "cara pendaftaran bagaimana",
+        "cara ndhaptar benyakna",
+        "cara daftar kepiye"
+      ],
+      "responses": [
+        "Untuk melakukan pendaftaran, siapkan semua persyaratan dokumen kemudian datang langsung ke Sekretariat SMP Nurul Islam."
+      ]
+    },
+    {
+      "tag": "biaya",
+      "patterns": [
+        "berapa biaya pendaftaran",
+        "biaya pendaftaran berapa",
+        "biaya ndhaptar berempa",
+        "piro biaya pendaftaran"
+      ],
+      "responses": [
+        "Biaya pendaftaran sebesar Rp.550.000 untuk informasi lebih lanjut, silahkan menghubungi nomor 0852-3770-1796."
+      ]
+    },
+    {
+      "tag": "jadwal",
+      "patterns": [
+        "kapan pendaftaran dibuka",
+        "pendaftaran dibuka kapan",
+        "kapan pendaftaran e buka",
+        "ndhaptar e buka kapan"
+      ],
+      "responses": [
+        "Pendaftaran dibuka mulai 1 Januari sampai 30 Juni 2026 setiap hari senin sampai sabtu pukul 08.00 – 20.00 WIB di kantor sekretariat SMP Nurul Islam, Jl. Merapi 104, Triwung Lor, Kademangan, Kota Probolinggo. Informasi  lebih lanjut dpat diperoleh melalui nomor 0823-3440-4317 atau 0823-3359-5106."
+      ]
+    }
+  ]
+}

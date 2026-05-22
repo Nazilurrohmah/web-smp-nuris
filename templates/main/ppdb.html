@@ -1,0 +1,62 @@
+{% extends 'main/base.html' %}
+
+{% block title %}PPDB Online - SMP Nurul Islam{% endblock %}
+
+{% block content %}
+<div style="background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%); color: white; padding: 4rem 0; text-align: center;">
+    <div class="container">
+        <h1 style="color: white; margin-bottom: 0;">Penerimaan Peserta Didik Baru (PPDB)</h1>
+        <p style="color: var(--light-green); margin-top: 1rem;">Tahun Ajaran {% now "Y" %}/{{ request.resolver_match.kwargs.year|default:"2027" }}</p>
+    </div>
+</div>
+
+<section class="section">
+    <div class="container">
+        <a href="{% url 'home' %}" style="display: inline-block; margin-bottom: 2rem; color: var(--primary-green); font-weight: 500; font-size: 1.1rem;"><i class="fa-solid fa-arrow-left"></i> Kembali ke Beranda</a>
+        <div style="background: white; padding: 3rem; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-align: center;">
+            <i class="fa-solid fa-user-graduate" style="font-size: 5rem; color: var(--primary-green); margin-bottom: 2rem;"></i>
+            <h2>Selamat Datang Calon Siswa!</h2>
+            <p style="max-width: 600px; margin: 0 auto 2rem auto;">
+                Proses Pendaftaran Peserta Didik Baru (PPDB) di SMP Nurul Islam sekarang lebih mudah. Anda dapat langsung bertanya seputar syarat, biaya, dan alur pendaftaran melalui Chatbot Cerdas kami.
+            </p>
+            
+            <div style="display: inline-block; background-color: var(--light-green); padding: 2rem; border-radius: 12px; border: 2px dashed var(--primary-green); cursor: pointer;" onclick="document.getElementById('chatbotBtn').click();">
+                <i class="fa-solid fa-robot" style="font-size: 3rem; color: var(--dark-green); margin-bottom: 1rem;"></i>
+                <h3 style="color: var(--dark-green);">Klik Disini Untuk Membuka Chatbot PPDB</h3>
+                <p style="margin-bottom: 0;">Atau gunakan tombol melayang di pojok kanan bawah layar.</p>
+            </div>
+
+            <div style="margin-top: 4rem; text-align: left;">
+                <h3>Informasi Umum PPDB</h3>
+                <hr style="border:none; border-top: 1px solid #eee; margin: 1rem 0;">
+                <div style="display: flex; gap: 2rem; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 300px;">
+                        <h3 style="display: flex; align-items: center; gap: 10px;"><i class="fa-solid fa-list-check" style="color: var(--primary-green);"></i> Syarat Pendaftaran</h3>
+                        <ul style="padding-left: 1.5rem; margin-bottom: 1.5rem; line-height: 1.8;">
+                            <li>Foto Copy Akta Kelahiran 1 Lembar</li>
+                            <li>Foto Copy KK 1 Lembar</li>
+                            <li>Pas Foto 3x4 Sebanyak 3 Lembar</li>
+                            <li>Mengisi Formulir Pendaftaran</li>
+                            <li>Foto Copy Kartu PIP atau SKTM</li>
+                            <li>Foto Copy KTP Ortu Sebanyak 2 Lembar</li>
+                            <li>Foto Copy Ijazah MI/SD/MTs/SMP 3 Lembar</li>
+                            <li>Niat Kuat Dalam KBM dan Pesantren</li>
+                        </ul>
+                    </div>
+                    <div style="flex: 1; min-width: 300px;">
+                        <h3 style="display: flex; align-items: center; gap: 10px;"><i class="fa-solid fa-calendar-days" style="color: var(--primary-green);"></i> Alur & Jadwal Pendaftaran</h3>
+                        <ul style="padding-left: 1.5rem; margin-bottom: 1.5rem; line-height: 1.8; list-style-type: none; margin-left: -1.5rem;">
+                            <li><strong><i class="fa-regular fa-calendar" style="color: var(--secondary-green); width: 25px;"></i> Tanggal:</strong> 1 Januari s.d 30 Juni 2026</li>
+                            <li><strong><i class="fa-regular fa-clock" style="color: var(--secondary-green); width: 25px;"></i> Waktu:</strong> 08.00 s.d 20.00 WIB</li>
+                            <li><strong><i class="fa-solid fa-location-dot" style="color: var(--secondary-green); width: 25px;"></i> Tempat:</strong> Sekretariat SMP/MA/PP. Nurul Islam</li>
+                        </ul>
+                        <div style="background-color: var(--primary-green); color: white; padding: 1rem; border-radius: 8px; text-align: center; font-weight: bold; font-size: 1.25rem; margin-top: 2rem; box-shadow: 0 4px 6px rgba(16, 185, 129, 0.3);">
+                            <i class="fa-solid fa-gift"></i> PENDAFTARAN GRATIS!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

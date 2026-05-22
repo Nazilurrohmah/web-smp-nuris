@@ -1,0 +1,161 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}SMP Nurul Islam{% endblock %}</title>
+    <meta name="description" content="Profil Resmi SMP Nurul Islam">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <img src="{% static 'img/logo.png' %}" alt="Logo SMP Nurul Islam" style="height: 45px; width: auto; object-fit: contain;">
+                    SMP Nurul Islam
+                </div>
+                <ul class="nav-links">
+                    <li><a href="{% url 'home' %}">Beranda</a></li>
+                    <li><a href="{% url 'profile' %}">Profil</a></li>
+                    <li><a href="{% url 'berita_list' %}">Berita</a></li>
+                    <li><a href="{% url 'ppdb' %}" class="btn-primary" style="padding: 0.5rem 1rem;">PPDB Online</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        {% block content %}
+        {% endblock content %}
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>SMP Nurul Islam</h3>
+                    <p>Mencetak generasi cerdas, berakhlak mulia, dan berwawasan lingkungan.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Kontak Kami</h3>
+                    <p><i class="fa-solid fa-location-dot"></i> Triwung Lor - Kademangan - Kota Probolinggo</p>
+                    <p><i class="fa-solid fa-phone"></i> Ust. Soleh: 082-334-404-317</p>
+                    <p><i class="fa-solid fa-phone"></i> Ibu Azizah: 081-336-857-765</p>
+                    <p><i class="fa-solid fa-phone"></i> Fajar Almi Z.: 082-333-595-106</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Tautan Pintas</h3>
+                    <p><a href="{% url 'profile' %}">Tentang Kami</a></p>
+                    <p><a href="{% url 'berita_list' %}">Berita & Pengumuman</a></p>
+                    <p><a href="{% url 'ppdb' %}">Pendaftaran Siswa Baru</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; {% now "Y" %} SMP Nurul Islam. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Wadah Chatbot PPDB -->
+    <div class="chatbot-widget">
+        <div class="chatbot-window" id="chatbotWindow">
+            <div class="chat-header">
+                <div><i class="fa-solid fa-robot"></i> Tanya PPDB</div>
+                <button class="close-chat" id="closeChat">&times;</button>
+            </div>
+            <div class="chat-body" id="chatBody">
+                <div class="chat-msg bot">
+                    Halo! Saya asisten virtual SMP Nurul Islam. Ada yang bisa saya bantu terkait Pendaftaran Peserta Didik Baru (PPDB)?
+                </div>
+            </div>
+            <div class="chat-footer">
+                <input type="text" class="chat-input" id="chatInput" placeholder="Ketik pesan Anda disini...">
+                <button class="send-btn" id="sendBtn"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+        </div>
+        <button class="chatbot-btn" id="chatbotBtn">
+            <i class="fa-solid fa-comments"></i> Tanya PPDB
+        </button>
+    </div>
+
+    <!-- Chatbot Logic Script (Wadah) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatbotBtn = document.getElementById('chatbotBtn');
+            const chatbotWindow = document.getElementById('chatbotWindow');
+            const closeChat = document.getElementById('closeChat');
+            const sendBtn = document.getElementById('sendBtn');
+            const chatInput = document.getElementById('chatInput');
+            const chatBody = document.getElementById('chatBody');
+
+            // Toggle Open/Close
+            chatbotBtn.addEventListener('click', () => {
+                chatbotWindow.classList.toggle('active');
+            });
+
+            closeChat.addEventListener('click', () => {
+                chatbotWindow.classList.remove('active');
+            });
+
+            // Handle sending message UI logic
+            const sendMessage = () => {
+                const text = chatInput.value.trim();
+                if(text) {
+                    // Create user message
+                    const msgDiv = document.createElement('div');
+                    msgDiv.className = 'chat-msg user';
+                    msgDiv.textContent = text;
+                    chatBody.appendChild(msgDiv);
+                    
+                    // Clear input
+                    chatInput.value = '';
+                    
+                    // Scroll to bottom
+                    chatBody.scrollTop = chatBody.scrollHeight;
+
+                    // TODO (Tugas Akhir): Implement real backend logic here
+                    // For now, simulate bot typing...
+                    setTimeout(() => {
+                        const botDiv = document.createElement('div');
+                        botDiv.className = 'chat-msg bot';
+                        botDiv.textContent = "Pesan Anda diterima. (Ini adalah wadah/wadah sementara. Integrasikan backend chatbot Tugas Akhir Anda di sini.)";
+                        chatBody.appendChild(botDiv);
+                        chatBody.scrollTop = chatBody.scrollHeight;
+                    }, 1000);
+                }
+            };
+
+            sendBtn.addEventListener('click', sendMessage);
+            chatInput.addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+
+            // Scroll Animation Observer for sections
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                        // Optional: remove observer if you want it to animate only once
+                        // observer.unobserve(entry.target); 
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            document.querySelectorAll('.section').forEach((section) => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>

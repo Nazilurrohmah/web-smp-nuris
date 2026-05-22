@@ -1,0 +1,28 @@
+{% extends 'main/base.html' %}
+
+{% block title %}{{ berita_item.title }} - SMP Nurul Islam{% endblock %}
+
+{% block content %}
+<div style="background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%); color: white; padding: 2rem 0; text-align: center;">
+    <div class="container">
+        <h2 style="color: white; margin-bottom: 0;">Detail Berita</h2>
+    </div>
+</div>
+
+<section class="section">
+    <div class="container">
+        <div style="max-width: 800px; margin: 0 auto; background: white; padding: 3rem; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+            <a href="{% url 'berita_list' %}" style="color: var(--primary-green); font-weight: 500; margin-bottom: 2rem; display: inline-block;">&larr; Kembali ke Daftar Berita</a>
+            
+            <h1 style="color: var(--dark-green); margin-bottom: 0.5rem; font-size: 2.5rem;">{{ berita_item.title }}</h1>
+            <p class="card-meta" style="margin-bottom: 2rem; border-bottom: 1px solid #eee; padding-bottom: 1rem;"><i class="fa-regular fa-calendar-days"></i> Dipublikasikan pada {{ berita_item.published_date|date:"d M Y, H:i" }}</p>
+            
+            {% if berita_item.image %}
+                <img src="{{ berita_item.image.url }}" alt="{{ berita_item.title }}" style="width: 100%; max-height: 400px; object-fit: cover; border-radius: 8px; margin-bottom: 2rem;">
+            {% endif %}
+
+            <div style="line-height: 1.8; color: var(--text-dark); font-size: 1.1rem; white-space: pre-wrap;">{{ berita_item.content }}</div>
+        </div>
+    </div>
+</section>
+{% endblock %}

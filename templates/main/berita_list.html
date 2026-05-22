@@ -1,0 +1,42 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Berita Terkini - SMP Nurul Islam{% endblock %}
+
+{% block content %}
+<div style="background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%); color: white; padding: 4rem 0; text-align: center;">
+    <div class="container">
+        <h1 style="color: white; margin-bottom: 0;">Berita & Pengumuman</h1>
+    </div>
+</div>
+
+<section class="section">
+    <div class="container">
+        <a href="{% url 'home' %}" style="display: inline-block; margin-bottom: 2rem; color: var(--primary-green); font-weight: 500; font-size: 1.1rem;"><i class="fa-solid fa-arrow-left"></i> Kembali ke Beranda</a>
+        {% if news %}
+        <div class="grid-3">
+            {% for item in news %}
+            <div class="card">
+                {% if item.image %}
+                    <img src="{{ item.image.url }}" alt="{{ item.title }}" class="card-img">
+                {% else %}
+                    <div class="card-img"><i class="fa-solid fa-newspaper" style="font-size: 3rem;"></i></div>
+                {% endif %}
+                <div class="card-body">
+                    <p class="card-meta"><i class="fa-regular fa-calendar-days"></i> {{ item.published_date|date:"d M Y" }}</p>
+                    <h3 class="card-title">{{ item.title }}</h3>
+                    <p class="card-text">{{ item.content|truncatechars:120 }}</p>
+                    <a href="{% url 'berita_detail' item.id %}" style="color: var(--primary-green); font-weight: 500; margin-top: 1rem; display: inline-block;">Baca Selengkapnya &rarr;</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div style="text-align: center; padding: 5rem 0;">
+            <i class="fa-regular fa-folder-open" style="font-size: 4rem; color: var(--light-green); margin-bottom: 1rem;"></i>
+            <h2>Belum Ada Berita</h2>
+            <p color="var(--text-light)">Silakan cek kembali nanti untuk informasi terbaru.</p>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

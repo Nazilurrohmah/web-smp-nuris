@@ -1,0 +1,67 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Profil - SMP Nurul Islam{% endblock %}
+
+{% block content %}
+<div style="background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%); color: white; padding: 4rem 0; text-align: center;">
+    <div class="container">
+        <h1 style="color: white; margin-bottom: 0;">Profil Sekolah</h1>
+    </div>
+</div>
+
+<section class="section">
+    <div class="container">
+        <a href="{% url 'home' %}" style="display: inline-block; margin-bottom: 2rem; color: var(--primary-green); font-weight: 500; font-size: 1.1rem;"><i class="fa-solid fa-arrow-left"></i> Kembali ke Beranda</a>
+        <div style="background: white; padding: 3rem; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+            <h2>Sejarah Singkat</h2>
+            <p>SMP Nurul Islam didirikan dengan semangat untuk memberikan layanan pendidikan berkualitas yang terjangkau bagi masyarakat luas. Sejak awal berdirinya, kami terus berkomitmen untuk tidak hanya fokus pada prestasi akademik, namun juga pada pengembangan karakter dan moral peserta didik.</p>
+
+            <h2 style="margin-top: 3rem;">Visi & Misi</h2>
+            <div style="background-color: var(--light-green); padding: 2rem; border-radius: 8px; border-left: 5px solid var(--primary-green); margin-bottom: 2rem;">
+                <h3 style="color: var(--dark-green); margin-bottom: 1rem;">Visi</h3>
+                <p style="font-style: italic;">"Menjadi lembaga pendidikan unggul yang mencetak generasi berkarakter, berprestasi, kreatif, dan inovatif bersendikan nilai-nilai ajaran luhur."</p>
+            </div>
+
+            <div style="background-color: var(--light-green); padding: 2rem; border-radius: 8px; border-left: 5px solid var(--secondary-green);">
+                <h3 style="color: var(--dark-green); margin-bottom: 1rem;">Misi</h3>
+                <ul style="padding-left: 1.5rem; color: var(--text-dark); line-height: 1.8;">
+                    <li>Menyelenggarakan proses pembelajaran yang inovatif dan efektif.</li>
+                    <li>Mengembangkan potensi siswa di bidang akademik maupun non-akademik.</li>
+                    <li>Menanamkan nilai-nilai moral, etika, dan disiplin dalam kehidupan sehari-hari.</li>
+                    <li>Menciptakan lingkungan sekolah yang aman, bersih, dan asri (berwawasan lingkungan).</li>
+                </ul>
+            </div>
+            
+            <h2 style="margin-top: 3rem;">Program Unggulan</h2>
+            <div style="background-color: var(--bg-light); padding: 2rem; border-radius: 8px; border: 1px solid #e5e7eb; margin-top: 1.5rem;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                    <p><i class="fa-solid fa-check text-primary-green" style="color: var(--primary-green);"></i> Amtsilati</p>
+                    <p><i class="fa-solid fa-check text-primary-green" style="color: var(--primary-green);"></i> Kaligrafi</p>
+                    <p><i class="fa-solid fa-check text-primary-green" style="color: var(--primary-green);"></i> Tartil & Qiro'ah</p>
+                    <p><i class="fa-solid fa-check text-primary-green" style="color: var(--primary-green);"></i> Hadrah Al Banjarai</p>
+                    <p><i class="fa-solid fa-check text-primary-green" style="color: var(--primary-green);"></i> Hadrah Al Manduri</p>
+                    <p><i class="fa-solid fa-check text-primary-green" style="color: var(--primary-green);"></i> Bola Voli</p>
+                    <p><i class="fa-solid fa-check text-primary-green" style="color: var(--primary-green);"></i> Pagar Nusa</p>
+                    <p><i class="fa-solid fa-check text-primary-green" style="color: var(--primary-green);"></i> Bulu Tangkis</p>
+                    <p><i class="fa-solid fa-check text-primary-green" style="color: var(--primary-green);"></i> Catur</p>
+                </div>
+            </div>
+
+            <h2 style="margin-top: 3rem;">Fasilitas Penunjang</h2>
+            <div style="background-color: var(--bg-light); padding: 2rem; border-radius: 8px; border: 1px solid #e5e7eb; margin-top: 1.5rem;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                    <p><i class="fa-solid fa-mosque text-primary-green" style="color: var(--primary-green);"></i> Mushollah</p>
+                    <p><i class="fa-solid fa-building text-primary-green" style="color: var(--primary-green);"></i> Gedung KBM SMP - MA Milik Sendiri</p>
+                    <p><i class="fa-solid fa-user-tie text-primary-green" style="color: var(--primary-green);"></i> Tenaga Pendidik S1</p>
+                    <p><i class="fa-solid fa-bed text-primary-green" style="color: var(--primary-green);"></i> Asrama Putra & Putri</p>
+                    <p><i class="fa-solid fa-book text-primary-green" style="color: var(--primary-green);"></i> Perpustakaan</p>
+                    <p><i class="fa-solid fa-users text-primary-green" style="color: var(--primary-green);"></i> Ekstrakurikuler Berbasis Potensi Siswa</p>
+                    <p><i class="fa-solid fa-flask text-primary-green" style="color: var(--primary-green);"></i> Laboratorium IPA & Lab Komputer</p>
+                    <p><i class="fa-solid fa-volleyball text-primary-green" style="color: var(--primary-green);"></i> Lapangan Bola Voli</p>
+                    <p><i class="fa-solid fa-utensils text-primary-green" style="color: var(--primary-green);"></i> Kantin</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

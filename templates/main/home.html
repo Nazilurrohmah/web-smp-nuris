@@ -1,0 +1,92 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <img src="{% static 'img/logo.png' %}" alt="Logo SMP Nurul Islam" style="height: 140px; width: auto; margin-bottom: 1.5rem; filter: drop-shadow(0 6px 8px rgba(0,0,0,0.3));">
+        <h1>Selamat Datang di SMP Nurul Islam</h1>
+        <p>Membentuk pribadi cerdas, berintegritas, dan berprestasi berlandaskan nilai-nilai karakter bangsa.</p>
+        <a href="{% url 'ppdb' %}" class="btn-primary">Daftar Sekarang (PPDB)</a>
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="section" style="background-color: white;">
+    <div class="container" style="display: flex; gap: 4rem; align-items: center; flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 300px;">
+            <h2>Tentang Kami</h2>
+            <p>SMP Nurul Islam adalah lembaga pendidikan tingkat menengah pertama yang didedikasikan untuk menciptakan generasi penerus bangsa yang berkualitas. Kami memadukan kurikulum nasional dengan pembinaan karakter dan keagamaan yang kuat.</p>
+            <p>Dengan fasilitas yang memadai dan tenaga pengajar profesional, kami siap mengantarkan putra-putri Anda menuju masa depan yang gemilang.</p>
+            <a href="{% url 'profile' %}" class="btn-primary" style="margin-top: 1rem;">Baca Selengkapnya</a>
+        </div>
+        <div style="flex: 1; min-width: 300px; display: flex; justify-content: center;">
+            <!-- Placeholder for Image -->
+            <div style="width: 100%; height: 300px; background-color: var(--light-green); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--secondary-green);">
+                <i class="fa-solid fa-school" style="font-size: 5rem;"></i>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Facilities Section -->
+<section class="section" style="background-color: var(--bg-light);">
+    <div class="container">
+        <h2 class="section-title">Fasilitas Penunjang Utama</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+            <div style="background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); display: flex; align-items: center; gap: 15px;">
+                <i class="fa-solid fa-mosque" style="font-size: 2rem; color: var(--primary-green);"></i> <span style="font-weight: 500;">Mushollah</span>
+            </div>
+            <div style="background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); display: flex; align-items: center; gap: 15px;">
+                <i class="fa-solid fa-building" style="font-size: 2rem; color: var(--primary-green);"></i> <span style="font-weight: 500;">Gedung KBM Milik Sendiri</span>
+            </div>
+            <div style="background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); display: flex; align-items: center; gap: 15px;">
+                <i class="fa-solid fa-user-tie" style="font-size: 2rem; color: var(--primary-green);"></i> <span style="font-weight: 500;">Tenaga Pendidik S1</span>
+            </div>
+            <div style="background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); display: flex; align-items: center; gap: 15px;">
+                <i class="fa-solid fa-bed" style="font-size: 2rem; color: var(--primary-green);"></i> <span style="font-weight: 500;">Asrama Putra & Putri</span>
+            </div>
+            <div style="background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); display: flex; align-items: center; gap: 15px;">
+                <i class="fa-solid fa-book" style="font-size: 2rem; color: var(--primary-green);"></i> <span style="font-weight: 500;">Perpustakaan</span>
+            </div>
+            <div style="background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); display: flex; align-items: center; gap: 15px;">
+                <i class="fa-solid fa-flask" style="font-size: 2rem; color: var(--primary-green);"></i> <span style="font-weight: 500;">Lab IPA & Komputer</span>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 2.5rem;">
+            <a href="{% url 'profile' %}" class="btn-primary" style="background-color: var(--secondary-green);">Lihat Semua Fasilitas & Program</a>
+        </div>
+    </div>
+</section>
+
+<!-- Berita Terbaru -->
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">Berita & Informasi Terbaru</h2>
+        {% if latest_news %}
+        <div class="grid-3">
+            {% for item in latest_news %}
+            <div class="card">
+                {% if item.image %}
+                    <img src="{{ item.image.url }}" alt="{{ item.title }}" class="card-img">
+                {% else %}
+                    <div class="card-img"><i class="fa-solid fa-newspaper" style="font-size: 3rem;"></i></div>
+                {% endif %}
+                <div class="card-body">
+                    <p class="card-meta"><i class="fa-regular fa-calendar-days"></i> {{ item.published_date|date:"d M Y" }}</p>
+                    <h3 class="card-title">{{ item.title }}</h3>
+                    <p class="card-text">{{ item.content|truncatechars:100 }}</p>
+                    <a href="{% url 'berita_detail' item.id %}" style="color: var(--primary-green); font-weight: 500; margin-top: 1rem; display: inline-block;">Baca Selengkapnya &rarr;</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="{% url 'berita_list' %}" class="btn-primary" style="background-color: var(--secondary-green);">Lihat Semua Berita</a>
+        </div>
+        {% else %}
+        <p style="text-align: center; color: var(--text-light);">Belum ada berita untuk ditampilkan.</p>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
