@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Berita - SMP Nurul Islam Probolinggo</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; color: #333; background-color: #f1f8f1; line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 30px; }
+        a { text-decoration: none; transition: all 0.3s ease; }
+
+        /* --- Header Navigasi --- */
+        header { background-color: white; box-shadow: 0 4px 15px rgba(0,0,0,0.05); position: fixed; width: 100%; top: 0; z-index: 9999; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; }
+        .logo { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 1.25rem; color: #1a7442; }
+        .logo i { font-size: 1.5rem; }
+        .nav-links { display: flex; list-style: none; gap: 30px; align-items: center; }
+        .nav-links a { color: #555; font-weight: 500; font-size: 0.95rem; }
+        .nav-links a:hover { color: #1a7442; }
+        .nav-btn { background-color: #1a7442; color: white !important; padding: 10px 22px; border-radius: 6px; }
+
+        /* --- Hero Banner --- */
+        .hero-detail { background: linear-gradient(135deg, #1b5e20 0%, #1a7442 100%); color: white; padding: 140px 20px 70px; text-align: center; }
+        .hero-detail h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 10px; }
+
+        /* --- Konten Utama --- */
+        .main-content { padding: 40px 0 80px; }
+        .back-link { display: inline-flex; align-items: center; gap: 8px; color: #1a7442; font-weight: 500; margin-bottom: 25px; font-size: 0.95rem; }
+        .back-link:hover { color: #145a33; }
+
+        /* --- Lembar Berita --- */
+        .article-card { background: white; border-radius: 12px; padding: 45px 40px; box-shadow: 0 4px 25px rgba(0,0,0,0.04); }
+        .article-title { font-size: 2rem; color: #1a7442; font-weight: 700; line-height: 1.4; margin-bottom: 10px; }
+        .article-meta { font-size: 0.85rem; color: #888; margin-bottom: 30px; display: flex; align-items: center; gap: 6px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
+
+        /* Area Unggah Foto Berita */
+        .article-image-box { width: 100%; max-height: 500px; border-radius: 8px; overflow: hidden; margin-bottom: 35px; background-color: #e8f5e9; display: flex; justify-content: center; align-items: center; border: 1px solid #e2f0e7; }
+        .article-image-box img { width: 100%; height: auto; object-fit: cover; display: block; }
+        .image-placeholder { padding: 40px; text-align: center; color: #1a7442; }
+        .image-placeholder i { font-size: 3.5rem; margin-bottom: 10px; }
+
+        /* Teks Isi Berita */
+        .article-body { color: #444; font-size: 1rem; line-height: 1.8; text-align: justify; }
+        .article-body p { margin-bottom: 20px; }
+        .article-body ul { margin-bottom: 20px; padding-left: 20px; list-style-type: square; }
+        .article-body ul li { margin-bottom: 6px; }
+        .highlight-text { font-size: 1.1rem; font-weight: 600; color: #2e7d32; margin-bottom: 20px; display: block; }
+
+        /* --- Footer --- */
+        footer { background-color: #0c1a11; color: white; padding: 70px 0 30px; border-top: 4px solid #1a7442; }
+        .footer-content { display: flex; flex-wrap: wrap; gap: 50px; justify-content: space-between; margin-bottom: 40px; }
+        .footer-col { flex: 1; min-width: 280px; }
+        .footer-col h3 { color: white; margin-bottom: 25px; font-size: 1.2rem; font-weight: 600; }
+        .footer-col p { margin-bottom: 15px; font-size: 0.9rem; display: flex; align-items: flex-start; gap: 12px; color: #eee; }
+        .footer-col i { color: #2e7d32; font-size: 1.1rem; width: 18px; text-align: center; margin-top: 3px; }
+        .footer-col a { color: #eee; text-decoration: none; display: block; margin-bottom: 12px; font-size: 0.95rem; }
+        .footer-col a:hover { color: white; padding-left: 5px; }
+        .adw-badge { background-color: #2e7d32; color: white; padding: 6px 12px; border-radius: 20px; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 5px; margin-top: 15px; }
+        .footer-bottom { text-align: center; border-top: 1px solid #2d2d2d; padding-top: 25px; font-size: 0.9rem; color: #aaa; }
+
+        /* --- Chatbot Widget --- */
+        .chatbot-widget { position: fixed; bottom: 25px; right: 25px; z-index: 10000; }
+        .chatbot-window { width: 400px; height: 550px; display: none; flex-direction: column; overflow: hidden; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.25); background: white; position: fixed; bottom: 95px; right: 25px; border: 1px solid #ddd; }
+        .chat-header { background: #1a7442; color: white; padding: 15px 20px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; }
+        .close-chat { background: none; border: none; color: white; font-size: 24px; cursor: pointer; opacity: 0.8; }
+        .close-chat:hover { opacity: 1; }
+        .chatbot-window iframe { width: 100%; height: 100%; border: none; }
+        .chatbot-btn { padding: 12px 20px; background-color: #1a7442; color: white; border-radius: 50px; display: flex; align-items: center; gap: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); cursor: pointer; border: none; font-family: inherit; font-size: 0.95rem;}
+        .chatbot-btn:hover { background-color: #145a33; transform: scale(1.03); }
+
+        @media (max-width: 768px) {
+            .article-card { padding: 30px 20px; }
+            .article-title { font-size: 1.6rem; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fa-solid fa-school"></i>
+                    SMP Nurul Islam
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Beranda</a></li>
+                    <li><a href="profile.html">Profil</a></li>
+                    <li><a href="berita_list.html" style="color: #1a7442;">Berita</a></li>
+                    <li><a href="ppdb.html" class="btn nav-btn">PPDB Online</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero-detail">
+        <div class="container">
+            <h1>Detail Berita</h1>
+        </div>
+    </section>
+
+    <main class="container main-content">
+        <a href="berita_list.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Kembali ke Daftar Berita</a>
+        
+        <article class="article-card">
+            <h1 class="article-title">Pengumuman Penerimaan Murid Baru (PPDB) 2026-2027</h1>
+            <div class="article-meta"><i class="fa-solid fa-calendar-days"></i> Dipublikasikan pada 08 Apr 2026, 08:30</div>
+            
+            <div class="article-image-box">
+                <div class="image-placeholder">
+                    <i class="fa-solid fa-images"></i>
+                    <p>[ Letakkan Foto / Pamflet Brosur Berita Di Sini ]</p>
+                </div>
+            </div>
+
+            <div class="article-body">
+                <span class="highlight-text">📣 PENGUMUMAN PENERIMAAN MURID BARU (PPDB) 2026-2027 📣</span>
+                <p>Telah Dibuka Pendaftaran Peserta Didik Baru (PPDB) Tahun Ajaran 2026-2027! Ayo segera daftarkan putra-putri Anda. <strong>PENDAFTARAN GRATIS!</strong></p>
+                
+                <p><strong>SYARAT PENDAFTARAN:</strong></p>
+                <ul>
+                    <li>Foto Copy Akta Kelahiran 1 Lembar</li>
+                    <li>Foto Copy KK 1 Lembar</li>
+                    <li>Pas Foto 3×4 Sebanyak 3 Lembar</li>
+                    <li>Mengisi Formulir Pendaftaran</li>
+                    <li>Foto Copy Kartu PIP atau SKTM (Jika ada)</li>
+                    <li>Foto Copy KTP Ortu Sebanyak 2 Lembar</li>
+                    <li>Foto Copy Ijazah MI/SD 3 Lembar</li>
+                    <li>Niat Kuat Dalam KBM dan Pesantren</li>
+                </ul>
+                
+                <p><strong>ALUR & JADWAL PENDAFTARAN:</strong></p>
+                <ul>
+                    <li>Tanggal: 1 Januari s.d 30 Juni 2026</li>
+                    <li>Waktu: 08.00 s.d 20.00 WIB</li>
+                    <li>Tempat: Sekretariat PPDB SMP Nurul Islam</li>
+                </ul>
+                
+                <p>Kami memiliki program unggulan seperti Amtsilati, Kaligrafi, Hadrah, dll. Asrama juga tersedia gratis untuk putra dan putri.</p>
+                <p>Untuk informasi lebih lanjut, gunakan Chatbot PPDB di pojok kanan layar, atau hubungi Contact Person kami yang tertera di bagian bawah website. Siapkan berkas Anda dan mari bergabung bersama keluarga besar SMP Nurul Islam!</p>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>SMP Nurul Islam</h3>
+                    <p style="color: #bbb; line-height: 1.7; margin-bottom: 20px;">Mencetak generasi cerdas, berakhlak mulia, dan berwawasan lingkungan.</p>
+                    <div class="adw-badge"><i class="fa-solid fa-leaf"></i> Sekolah Adiwiyata</div>
+                </div>
+                <div class="footer-col">
+                    <h3>Kontak Kami</h3>
+                    <p><i class="fa-solid fa-location-dot"></i> Triwung Lor - Kademangan - Kota Probolinggo</p>
+                    <p><i class="fa-solid fa-phone"></i> Ust. Soleh: 082-334-404-317</p>
+                    <p><i class="fa-solid fa-phone"></i> Ibu Azizah: 081-336-857-765</p>
+                    <p><i class="fa-solid fa-phone"></i> Fajar Almi Z.: 082-333-595-106</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Tautan Pintas</h3>
+                    <a href="profile.html">Tentang Kami</a>
+                    <a href="berita_list.html">Berita & Pengumuman</a>
+                    <a href="ppdb.html">Pendaftaran Siswa Baru</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 SMP Nurul Islam Probolinggo. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="chatbot-widget">
+        <div class="chatbot-window" id="chatbotWindow">
+            <div class="chat-header">
+                <div><i class="fa-solid fa-robot"></i> Tanya PPDB AI</div>
+                <button class="close-chat" id="closeChat">&times;</button>
+            </div>
+            <iframe src="https://nazilurrohmah-smpnuris.hf.space"></iframe>
+        </div>
+        <button class="chatbot-btn" id="chatbotBtn">
+            <i class="fa-solid fa-comments"></i> Tanya PPDB
+        </button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatbotBtn = document.getElementById('chatbotBtn');
+            const chatbotWindow = document.getElementById('chatbotWindow');
+            const closeChat = document.getElementById('closeChat');
+
+            chatbotBtn.addEventListener('click', () => {
+                if (chatbotWindow.style.display === "none" || chatbotWindow.style.display === "") {
+                    chatbotWindow.style.display = "flex";
+                } else {
+                    chatbotWindow.style.display = "none";
+                }
+            });
+            closeChat.addEventListener('click', () => { chatbotWindow.style.display = "none"; });
+        });
+    </script>
+</body>
+</html>
