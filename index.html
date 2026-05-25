@@ -30,10 +30,124 @@
         .hero-section h1 { font-size: 2.8rem; font-weight: 700; margin-bottom: 16px; letter-spacing: -0.5px; }
         .hero-section p { font-size: 1.2rem; opacity: 0.95; max-width: 700px; margin: 0 auto; font-weight: 400; }
 
-        /* Konten Pengumuman Singkat */
+        /* Konten Profil Singkat */
         .main-info { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.04); margin-bottom: 50px; }
         .main-info h2 { color: #1b5e20; margin-bottom: 15px; font-size: 1.6rem; border-left: 5px solid #1b5e20; padding-left: 15px; }
         .main-info p { color: #555; font-size: 1.05rem; line-height: 1.8; }
 
-        /* Footer Pengenal */
-        footer { background-color: #1a1a1a; color: #cccc
+        /* Footer */
+        footer { background-color: #1a1a1a; color: #cccccc; padding: 60px 0 30px 0; margin-top: 60px; border-top: 4px solid #1b5e20; }
+        .footer-content { display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; margin-bottom: 40px; }
+        .footer-col { flex: 1; min-width: 280px; }
+        .footer-col h3 { color: white; margin-bottom: 22px; font-size: 1.25rem; font-weight: 600; position: relative; }
+        .footer-col h3::after { content: ''; position: absolute; left: 0; bottom: -6px; width: 40px; height: 2px; background-color: #2e7d32; }
+        .footer-col p { margin-bottom: 12px; font-size: 0.95rem; display: flex; align-items: flex-start; gap: 10px; }
+        .footer-col i { color: #2e7d32; margin-top: 4px; font-size: 1rem; }
+        .footer-col a { color: #cccc; text-decoration: none; transition: color 0.3s; }
+        .footer-col a:hover { color: white; padding-left: 4px; }
+        .footer-bottom { text-align: center; border-top: 1px solid #2d2d2d; padding-top: 25px; font-size: 0.9rem; color: #888; }
+
+        /* Wadah Chatbot Terintegrasi Hugging Face */
+        .chatbot-widget { position: fixed; bottom: 25px; right: 25px; z-index: 10000; }
+        .chatbot-window { width: 400px; height: 550px; display: none; flex-direction: column; overflow: hidden; border-radius: 14px; box-shadow: 0 12px 35px rgba(0,0,0,0.25); background: white; position: fixed; bottom: 95px; right: 25px; border: 1px solid #e0e0e0; }
+        .chat-header { background: #1b5e20; color: white; padding: 16px 20px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; font-size: 1.05rem; }
+        .close-chat { background: none; border: none; color: white; font-size: 24px; cursor: pointer; opacity: 0.85; transition: opacity 0.2s; }
+        .close-chat:hover { opacity: 1; }
+        .chatbot-window iframe { width: 100%; height: 100%; border: none; }
+        .chatbot-btn { padding: 14px 24px; background-color: #1b5e20; color: white; border: none; border-radius: 50px; font-weight: 600; font-family: 'Inter', sans-serif; font-size: 0.95rem; cursor: pointer; box-shadow: 0 6px 20px rgba(27,94,32,0.4); display: flex; align-items: center; gap: 10px; transition: all 0.3s ease; }
+        .chatbot-btn:hover { transform: translateY(-3px); background-color: #144317; box-shadow: 0 8px 25px rgba(27,94,32,0.5); }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fa-solid fa-school"></i>
+                    SMP Nurul Islam
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#">Beranda</a></li>
+                    <li><a href="#">Profil</a></li>
+                    <li><a href="#">Berita</a></li>
+                    <li><a href="#" class="btn-primary">PPDB Online</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="hero-section">
+            <h1>Selamat Datang di SMP Nurul Islam</h1>
+            <p>Mencetak generasi cerdas, berakhlak mulia, dan berbasis teknologi informasi di Kota Probolinggo.</p>
+        </div>
+        
+        <div class="main-info">
+            <h2>Visi & Misi Sekolah</h2>
+            <p style="margin-top: 15px;"><strong>Visi:</strong> Terwujudnya insan yang religius, cerdas, terampil, dan berwawasan lingkungan.</p>
+            <p style="margin-top: 10px;">Layanan portal informasi ini dibuat khusus untuk mempermudah calon siswa, guru, maupun masyarakat untuk mendapatkan data akurat mengenai pendaftaran, kegiatan belajar mengajar, serta profil lengkap yayasan secara transparan.</p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>SMP Nurul Islam</h3>
+                    <p style="color: #aaa; line-height: 1.7;">Mencetak generasi cerdas, berakhlak mulia, dan berwawasan lingkungan.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Kontak Kami</h3>
+                    <p><i class="fa-solid fa-location-dot"></i> Triwung Lor - Kademangan - Kota Probolinggo</p>
+                    <p><i class="fa-solid fa-phone"></i> Ust. Soleh: 082-334-404-317</p>
+                    <p><i class="fa-solid fa-phone"></i> Ibu Azizah: 081-336-857-765</p>
+                    <p><i class="fa-solid fa-phone"></i> Fajar Almi Z.: 082-333-595-106</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Tautan Pintas</h3>
+                    <p><a href="#">Tentang Kami</a></p>
+                    <p><a href="#">Berita & Pengumuman</a></p>
+                    <p><a href="#">Pendaftaran Siswa Baru</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 SMP Nurul Islam. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="chatbot-widget">
+        <div class="chatbot-window" id="chatbotWindow">
+            <div class="chat-header">
+                <div><i class="fa-solid fa-robot"></i> Tanya PPDB AI</div>
+                <button class="close-chat" id="closeChat">&times;</button>
+            </div>
+            <iframe src="https://nazilurrohmah-smpnuris.hf.space"></iframe>
+        </div>
+        <button class="chatbot-btn" id="chatbotBtn">
+            <i class="fa-solid fa-comments"></i> Tanya PPDB
+        </button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatbotBtn = document.getElementById('chatbotBtn');
+            const chatbotWindow = document.getElementById('chatbotWindow');
+            const closeChat = document.getElementById('closeChat');
+
+            chatbotBtn.addEventListener('click', () => {
+                if (chatbotWindow.style.display === "none" || chatbotWindow.style.display === "") {
+                    chatbotWindow.style.display = "flex";
+                } else {
+                    chatbotWindow.style.display = "none";
+                }
+            });
+
+            closeChat.addEventListener('click', () => {
+                chatbotWindow.style.display = "none";
+            });
+        });
+    </script>
+</body>
+</html>
