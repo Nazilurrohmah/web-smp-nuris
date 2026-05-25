@@ -5,57 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SMP Nurul Islam Probolinggo</title>
     <meta name="description" content="Profil Resmi SMP Nurul Islam">
-    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <style>
+        /* CSS Reset & Variabel */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Inter', sans-serif; color: #333; background-color: #f4f6f4; line-height: 1.6; padding-top: 80px; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
         
-        /* Navigasi / Header Atas */
-        header { background-color: #ffffff; box-shadow: 0 4px 12px rgba(0,0,0,0.08); position: fixed; width: 100%; top: 0; left: 0; z-index: 9999; }
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; }
-        .logo { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 1.3rem; color: #1b5e20; }
-        .logo i { font-size: 1.6rem; }
-        .nav-links { display: flex; list-style: none; gap: 28px; align-items: center; }
-        .nav-links a { text-decoration: none; color: #444; font-weight: 600; font-size: 0.95rem; transition: color 0.3s; }
+        /* Header & Navigasi Sesuai Kode Aslimu */
+        header { background-color: #ffffff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: fixed; width: 100%; top: 0; left: 0; z-index: 9999; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; }
+        .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.2rem; color: #1b5e20; }
+        .nav-links { display: flex; list-style: none; gap: 20px; align-items: center; }
+        .nav-links a { text-decoration: none; color: #555; font-weight: 500; transition: color 0.3s; }
         .nav-links a:hover { color: #1b5e20; }
-        .btn-primary { background-color: #1b5e20; color: white !important; padding: 10px 22px; border-radius: 6px; font-weight: 600; transition: background 0.3s; box-shadow: 0 4px 10px rgba(27,94,32,0.2); }
+        .btn-primary { background-color: #1b5e20; color: white !important; padding: 0.5rem 1rem; border-radius: 4px; text-decoration: none; font-weight: 500; transition: background 0.3s; }
         .btn-primary:hover { background-color: #144317; }
 
-        /* Banner Utama (Hero Section) */
-        .hero-section { background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%); color: white; padding: 90px 30px; border-radius: 16px; text-align: center; margin-top: 30px; margin-bottom: 40px; box-shadow: 0 10px 30px rgba(27,94,32,0.15); }
-        .hero-section h1 { font-size: 2.8rem; font-weight: 700; margin-bottom: 16px; letter-spacing: -0.5px; }
-        .hero-section p { font-size: 1.2rem; opacity: 0.95; max-width: 700px; margin: 0 auto; font-weight: 400; }
+        /* Main Content Style */
+        main { min-height: 60vh; padding: 30px 0; }
+        .hero-section { background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%); color: white; padding: 80px 20px; border-radius: 10px; text-align: center; margin-bottom: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .hero-section h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 15px; }
+        .hero-section p { font-size: 1.1rem; opacity: 0.9; max-width: 600px; margin: 0 auto; }
 
-        /* Konten Profil Singkat */
-        .main-info { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.04); margin-bottom: 50px; }
-        .main-info h2 { color: #1b5e20; margin-bottom: 15px; font-size: 1.6rem; border-left: 5px solid #1b5e20; padding-left: 15px; }
+        .main-info { background: white; padding: 40px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.03); margin-bottom: 40px; }
+        .main-info h2 { color: #1b5e20; margin-bottom: 15px; font-size: 1.6rem; }
         .main-info p { color: #555; font-size: 1.05rem; line-height: 1.8; }
 
-        /* Footer */
-        footer { background-color: #1a1a1a; color: #cccccc; padding: 60px 0 30px 0; margin-top: 60px; border-top: 4px solid #1b5e20; }
+        /* Footer Megah Sesuai Data Kontak Aslimu */
+        footer { background-color: #111; color: #bbb; padding: 60px 0 20px 0; margin-top: 60px; }
         .footer-content { display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; margin-bottom: 40px; }
-        .footer-col { flex: 1; min-width: 280px; }
-        .footer-col h3 { color: white; margin-bottom: 22px; font-size: 1.25rem; font-weight: 600; position: relative; }
-        .footer-col h3::after { content: ''; position: absolute; left: 0; bottom: -6px; width: 40px; height: 2px; background-color: #2e7d32; }
-        .footer-col p { margin-bottom: 12px; font-size: 0.95rem; display: flex; align-items: flex-start; gap: 10px; }
-        .footer-col i { color: #2e7d32; margin-top: 4px; font-size: 1rem; }
-        .footer-col a { color: #cccc; text-decoration: none; transition: color 0.3s; }
-        .footer-col a:hover { color: white; padding-left: 4px; }
-        .footer-bottom { text-align: center; border-top: 1px solid #2d2d2d; padding-top: 25px; font-size: 0.9rem; color: #888; }
+        .footer-col { flex: 1; min-width: 250px; }
+        .footer-col h3 { color: white; margin-bottom: 20px; font-size: 1.2rem; font-weight: 600; }
+        .footer-col p { margin-bottom: 12px; font-size: 0.9rem; line-height: 1.5; }
+        .footer-col i { margin-right: 10px; color: #2e7d32; width: 15px; text-align: center; }
+        .footer-col a { color: #bbb; text-decoration: none; transition: color 0.3s; display: block; margin-bottom: 10px; }
+        .footer-col a:hover { color: white; }
+        .footer-bottom { text-align: center; border-top: 1px solid #222; padding-top: 20px; font-size: 0.85rem; color: #666; }
 
         /* Wadah Chatbot Terintegrasi Hugging Face */
         .chatbot-widget { position: fixed; bottom: 25px; right: 25px; z-index: 10000; }
-        .chatbot-window { width: 400px; height: 550px; display: none; flex-direction: column; overflow: hidden; border-radius: 14px; box-shadow: 0 12px 35px rgba(0,0,0,0.25); background: white; position: fixed; bottom: 95px; right: 25px; border: 1px solid #e0e0e0; }
-        .chat-header { background: #1b5e20; color: white; padding: 16px 20px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; font-size: 1.05rem; }
-        .close-chat { background: none; border: none; color: white; font-size: 24px; cursor: pointer; opacity: 0.85; transition: opacity 0.2s; }
-        .close-chat:hover { opacity: 1; }
+        .chatbot-window { width: 400px; height: 550px; display: none; flex-direction: column; overflow: hidden; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); background: white; position: fixed; bottom: 95px; right: 25px; border: 1px solid #ddd; }
+        .chat-header { background: #1b5e20; color: white; padding: 15px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
+        .close-chat { background: none; border: none; color: white; font-size: 22px; cursor: pointer; }
         .chatbot-window iframe { width: 100%; height: 100%; border: none; }
-        .chatbot-btn { padding: 14px 24px; background-color: #1b5e20; color: white; border: none; border-radius: 50px; font-weight: 600; font-family: 'Inter', sans-serif; font-size: 0.95rem; cursor: pointer; box-shadow: 0 6px 20px rgba(27,94,32,0.4); display: flex; align-items: center; gap: 10px; transition: all 0.3s ease; }
-        .chatbot-btn:hover { transform: translateY(-3px); background-color: #144317; box-shadow: 0 8px 25px rgba(27,94,32,0.5); }
+        .chatbot-btn { padding: 12px 20px; background-color: #1b5e20; color: white; border: none; border-radius: 50px; font-weight: bold; font-family: 'Inter', sans-serif; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.3); display: flex; align-items: center; gap: 8px; transition: background 0.2s; }
+        .chatbot-btn:hover { background-color: #144317; }
     </style>
 </head>
 <body>
@@ -64,7 +60,7 @@
         <div class="container">
             <nav>
                 <div class="logo">
-                    <i class="fa-solid fa-school"></i>
+                    <i class="fa-solid fa-school" style="font-size: 1.4rem;"></i>
                     SMP Nurul Islam
                 </div>
                 <ul class="nav-links">
@@ -79,14 +75,16 @@
 
     <main class="container">
         <div class="hero-section">
-            <h1>Selamat Datang di SMP Nurul Islam</h1>
-            <p>Mencetak generasi cerdas, berakhlak mulia, dan berbasis teknologi informasi di Kota Probolinggo.</p>
+            <h1>SMP Nurul Islam</h1>
+            <p>Mencetak generasi cerdas, berakhlak mulia, dan berwawasan lingkungan.</p>
         </div>
         
         <div class="main-info">
-            <h2>Visi & Misi Sekolah</h2>
+            <h2>Selamat Datang</h2>
+            <p style="margin-top: 15px;">Selamat datang di website resmi pendaftaran siswa baru SMP Nurul Islam Probolinggo. Kami berkomitmen mencetak generasi unggul, berakhlak mulia, dan berbasis teknologi informasi.</p>
+            
+            <h2 style="margin-top: 30px;">Visi & Misi</h2>
             <p style="margin-top: 15px;"><strong>Visi:</strong> Terwujudnya insan yang religius, cerdas, terampil, dan berwawasan lingkungan.</p>
-            <p style="margin-top: 10px;">Layanan portal informasi ini dibuat khusus untuk mempermudah calon siswa, guru, maupun masyarakat untuk mendapatkan data akurat mengenai pendaftaran, kegiatan belajar mengajar, serta profil lengkap yayasan secara transparan.</p>
         </div>
     </main>
 
@@ -95,7 +93,7 @@
             <div class="footer-content">
                 <div class="footer-col">
                     <h3>SMP Nurul Islam</h3>
-                    <p style="color: #aaa; line-height: 1.7;">Mencetak generasi cerdas, berakhlak mulia, dan berwawasan lingkungan.</p>
+                    <p>Mencetak generasi cerdas, berakhlak mulia, dan berwawasan lingkungan.</p>
                 </div>
                 <div class="footer-col">
                     <h3>Kontak Kami</h3>
@@ -106,9 +104,9 @@
                 </div>
                 <div class="footer-col">
                     <h3>Tautan Pintas</h3>
-                    <p><a href="#">Tentang Kami</a></p>
-                    <p><a href="#">Berita & Pengumuman</a></p>
-                    <p><a href="#">Pendaftaran Siswa Baru</a></p>
+                    <a href="#">Tentang Kami</a>
+                    <a href="#">Berita & Pengumuman</a>
+                    <a href="#">Pendaftaran Siswa Baru</a>
                 </div>
             </div>
             <div class="footer-bottom">
