@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMP Nurul Islam Probolinggo</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
+            color: #333;
+        }
+        header {
+            background-color: #1b5e20;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        h1 { margin: 0; font-size: 2.5rem; }
+        h2 { color: #1b5e20; border-bottom: 2px solid #1b5e20; padding-bottom: 5px; }
+        
+        /* TOMBOL WIDGET CHATBOT BULAT DI POJOK KANAN BAWAH */
+        #chat-widget-button {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 60px;
+            height: 60px;
+            background-color: #1b5e20;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transition: transform 0.3s;
+        }
+        #chat-widget-button:hover { transform: scale(1.1); }
+        
+        /* KOTAK JENDELA POP-UP CHATBOT */
+        #chat-widget-container {
+            position: fixed;
+            bottom: 95px;
+            right: 25px;
+            width: 400px;
+            height: 550px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            display: none; 
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 1000;
+        }
+        .chat-header {
+            background: #1b5e20;
+            color: white;
+            padding: 15px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .close-btn { cursor: pointer; font-size: 20px; }
+        iframe { width: 100%; height: 100%; border: none; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>SMP NURUL ISLAM</h1>
+        <p>Kota Probolinggo - Jawa Timur</p>
+    </header>
+
+    <div class="container">
+        <h2>Selamat Datang</h2>
+        <p>Selamat datang di website resmi pendaftaran siswa baru SMP Nurul Islam Probolinggo. Kami berkomitmen mencetak generasi unggul, berakhlak mulia, dan berbasis teknologi informasi.</p>
+        
+        <h2>Visi & Misi</h2>
+        <p><strong>Visi:</strong> Terwujudnya insan yang religius, cerdas, terampil, dan berwawasan lingkungan.</p>
+        
+        <h2>Informasi Pendaftaran</h2>
+        <p>Silakan klik ikon obrolan hijau di pojok kanan bawah untuk mengobrol dengan Asisten Virtual AI kami mengenai syarat pendaftaran, biaya, dan jadwal pendaftaran secara langsung!</p>
+    </div>
+
+    <div id="chat-widget-button" onclick="toggleChat()">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+    </div>
+
+    <div id="chat-widget-container">
+        <div class="chat-header">
+            <span>Asisten Virtual AI SMP Nurul Islam</span>
+            <span class="close-btn" onclick="toggleChat()">&times;</span>
+        </div>
+        <iframe src="https://nazilurrohmah-smpnuris.hf.space"></iframe>
+    </div>
+
+    <script>
+        function toggleChat() {
+            var chatBox = document.getElementById("chat-widget-container");
+            if (chatBox.style.display === "none" || chatBox.style.display === "") {
+                chatBox.style.display = "flex";
+            } else {
+                chatBox.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
