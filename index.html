@@ -33,7 +33,7 @@
         .hero .logo-center { font-size: 5rem; margin-bottom: 25px; display: block; }
         .hero h1 { font-size: 3rem; font-weight: 700; margin-bottom: 20px; line-height: 1.2; letter-spacing: -1px; }
         .hero p { font-size: 1.15rem; opacity: 0.9; max-width: 700px; margin: 0 auto 35px; }
-        .btn-hero { background-color: #2e7d32; color: white; padding: 14px 30px; font-weight: 600; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .btn-hero { background-color: #2e7d32; color: white; padding: 14px 30px; font-weight: 600; box-shadow: 0 4px 10px rgba(0,0,0,0.1); display: inline-block; }
         .btn-hero:hover { background-color: #1b5e20; transform: translateY(-2px); }
 
         /* --- Section Styling (Umum) --- */
@@ -119,20 +119,21 @@
                     <li><a href="#">Beranda</a></li>
                     <li><a href="#about">Profil</a></li>
                     <li><a href="#news">Berita</a></li>
-                    <li><a href="{% url 'ppdb' %}" class="btn nav-btn"> Daftar PPDB</a></li>
+                    <li><a href="ppdb.html" class="btn nav-btn">PPDB Online</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <section class="hero">
-    <div class="container">
-        <i class="fa-solid fa-school logo-center"></i>
-        <h1>Selamat Datang di SMP Nurul Islam</h1>
-        <p>Membentuk pribadi cerdas, berintegritas, dan berprestasi berlandaskan nilai-nilai karakter bangsa.</p>
-        <a href="{% url 'ppdb' %}" class="btn btn-hero">Daftar Sekarang (PPDB)</a>
-    </div>
-</section>
+        <div class="container">
+            <i class="fa-solid fa-school logo-center"></i>
+            <h1>Selamat Datang di SMP Nurul Islam</h1>
+            <p>Membentuk pribadi cerdas, berintegritas, dan berprestasi berlandaskan nilai-nilai karakter bangsa.</p>
+            <a href="ppdb.html" class="btn btn-hero">Daftar Sekarang (PPDB)</a>
+        </div>
+    </section>
+
     <section id="about">
         <div class="container">
             <div class="about-grid">
@@ -186,7 +187,7 @@
         </div>
     </section>
 
-   <footer>
+    <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-col">
@@ -205,7 +206,7 @@
                     <h3>Tautan Pintas</h3>
                     <a href="#about">Tentang Kami</a>
                     <a href="#news">Berita & Pengumuman</a>
-                    <a href="{% url 'ppdb' %}">Pendaftaran Siswa Baru</a>
+                    <a href="ppdb.html">Pendaftaran Siswa Baru</a>
                 </div>
             </div>
             
