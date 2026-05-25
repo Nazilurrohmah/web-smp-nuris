@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PPDB - SMP Nurul Islam Probolinggo</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; color: #333; background-color: #f1f8f1; line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 30px; }
+        a { text-decoration: none; transition: all 0.3s ease; }
+
+        header { background-color: white; box-shadow: 0 4px 15px rgba(0,0,0,0.05); position: fixed; width: 100%; top: 0; z-index: 9999; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; }
+        .logo { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 1.25rem; color: #1a7442; }
+        .logo i { font-size: 1.5rem; }
+        .nav-links { display: flex; list-style: none; gap: 30px; align-items: center; }
+        .nav-links a { color: #555; font-weight: 500; font-size: 0.95rem; }
+        .nav-links a:hover { color: #1a7442; }
+        .nav-btn { background-color: #1a7442; color: white !important; padding: 10px 22px; border-radius: 6px; }
+
+        .hero-ppdb { background: linear-gradient(135deg, #1b5e20 0%, #1a7442 100%); color: white; padding: 140px 20px 70px; text-align: center; }
+        .hero-ppdb h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 10px; }
+        .hero-ppdb p { font-size: 1.1rem; opacity: 0.9; }
+
+        .main-content { padding: 40px 0 80px; }
+        .back-link { display: inline-flex; align-items: center; gap: 8px; color: #1a7442; font-weight: 500; margin-bottom: 25px; font-size: 0.95rem; }
+        .back-link:hover { color: #145a33; }
+
+        .ppdb-card { background: white; border-radius: 12px; padding: 50px 40px; box-shadow: 0 4px 25px rgba(0,0,0,0.04); text-align: center; margin-bottom: 40px; }
+        .ppdb-card .icon-student { font-size: 4.5rem; color: #1a7442; margin-bottom: 20px; }
+        .ppdb-card h2 { font-size: 1.8rem; font-weight: 700; color: #333; margin-bottom: 15px; }
+        .ppdb-card .sub-text { color: #666; max-width: 650px; margin: 0 auto 30px; font-size: 0.95rem; }
+
+        .bot-trigger-box { border: 2px dashed #a3d9b9; background-color: #f4faf6; border-radius: 10px; padding: 25px; max-width: 500px; margin: 0 auto 40px; cursor: pointer; transition: all 0.3s ease; }
+        .bot-trigger-box:hover { background-color: #e8f5e9; transform: translateY(-2px); }
+        .bot-trigger-box i { font-size: 2.5rem; color: #1a7442; margin-bottom: 12px; }
+        .bot-trigger-box h4 { color: #1a7442; font-size: 1.05rem; margin-bottom: 6px; font-weight: 600; }
+        .bot-trigger-box p { color: #666; font-size: 0.85rem; }
+
+        .info-heading { text-align: left; font-size: 1.15rem; font-weight: 700; color: #222; border-bottom: 2px solid #eee; padding-bottom: 12px; margin-bottom: 25px; }
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; text-align: left; }
+        .info-col h4 { font-size: 1.05rem; color: #1a7442; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+        .info-col ul { list-style: none; }
+        .info-col ul li { font-size: 0.9rem; color: #444; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+        .info-col ul li::before { content: "•"; color: #1a7442; font-weight: bold; }
+        
+        .schedule-item { font-size: 0.9rem; color: #444; margin-bottom: 12px; display: flex; gap: 12px; }
+        .schedule-item i { color: #1a7442; margin-top: 4px; width: 15px; }
+
+        .btn-register-now { background-color: #10b981; color: white; padding: 14px 35px; border-radius: 6px; font-weight: 600; display: inline-flex; align-items: center; gap: 10px; font-size: 1rem; box-shadow: 0 4px 12px rgba(16,185,129,0.2); border: none; margin-top: 35px; cursor: pointer; }
+        .btn-register-now:hover { background-color: #059669; transform: translateY(-2px); }
+
+        footer { background-color: #0c1a11; color: white; padding: 70px 0 30px; border-top: 4px solid #1a7442; }
+        .footer-content { display: flex; flex-wrap: wrap; gap: 50px; justify-content: space-between; margin-bottom: 40px; }
+        .footer-col { flex: 1; min-width: 280px; }
+        .footer-col h3 { color: white; margin-bottom: 25px; font-size: 1.2rem; font-weight: 600; }
+        .footer-col p { margin-bottom: 15px; font-size: 0.9rem; display: flex; align-items: flex-start; gap: 12px; color: #eee; }
+        .footer-col i { color: #2e7d32; font-size: 1.1rem; width: 18px; text-align: center; margin-top: 3px; }
+        .footer-col a { color: #eee; text-decoration: none; display: block; margin-bottom: 12px; font-size: 0.95rem; }
+        .footer-col a:hover { color: white; padding-left: 5px; }
+        .adw-badge { background-color: #2e7d32; color: white; padding: 6px 12px; border-radius: 20px; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 5px; margin-top: 15px; }
+        .footer-bottom { text-align: center; border-top: 1px solid #2d2d2d; padding-top: 25px; font-size: 0.9rem; color: #aaa; }
+
+        .chatbot-widget { position: fixed; bottom: 25px; right: 25px; z-index: 10000; }
+        .chatbot-window { width: 400px; height: 550px; display: none; flex-direction: column; overflow: hidden; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.25); background: white; position: fixed; bottom: 95px; right: 25px; border: 1px solid #ddd; }
+        .chat-header { background: #1a7442; color: white; padding: 15px 20px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; }
+        .close-chat { background: none; border: none; color: white; font-size: 24px; cursor: pointer; opacity: 0.8; }
+        .close-chat:hover { opacity: 1; }
+        .chatbot-window iframe { width: 100%; height: 100%; border: none; }
+        .chatbot-btn { padding: 12px 20px; background-color: #1a7442; color: white; border-radius: 50px; display: flex; align-items: center; gap: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); cursor: pointer; border: none; font-family: inherit; font-size: 0.95rem;}
+        .chatbot-btn:hover { background-color: #145a33; transform: scale(1.03); }
+
+        @media (max-width: 768px) {
+            .info-grid { grid-template-columns: 1fr; gap: 30px; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fa-solid fa-school"></i>
+                    SMP Nurul Islam
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Beranda</a></li>
+                    <li><a href="index.html#about">Profil</a></li>
+                    <li><a href="index.html#news">Berita</a></li>
+                    <li><a href="#" class="nav-btn">PPDB Online</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero-ppdb">
+        <div class="container">
+            <h1>Penerimaan Peserta Didik Baru (PPDB)</h1>
+            <p>Tahun Ajaran 2026/2027</p>
+        </div>
+    </section>
+
+    <main class="container main-content">
+        <a href="index.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Kembali ke Beranda</a>
+        
+        <div class="ppdb-card">
+            <div class="icon-student"><i class="fa-solid fa-user-graduate"></i></div>
+            <h2>Selamat Datang Calon Siswa!</h2>
+            <p class="sub-text">Proses Pendaftaran Peserta Didik Baru (PPDB) di SMP Nurul Islam sekarang lebih mudah. Anda dapat langsung bertanya seputar syarat, biaya, dan alur pendaftaran melalui Chatbot Cerdas kami.</p>
+            
+            <div class="bot-trigger-box" id="innerBotBox">
+                <i class="fa-solid fa-robot"></i>
+                <h4>Klik Disini Untuk Membuka Chatbot PPDB</h4>
+                <p>Atau gunakan tombol melayang di pojok kanan bawah layar.</p>
+            </div>
+
+            <h3 class="info-heading">Informasi Umum PPDB</h3>
+            
+            <div class="info-grid">
+                <div class="info-col">
+                    <h4><i class="fa-solid fa-list-check"></i> Syarat Pendaftaran</h4>
+                    <ul>
+                        <li>Foto Copy Akta Kelahiran 1 Lembar</li>
+                        <li>Foto Copy KK 1 Lembar</li>
+                        <li>Pas Foto 3x4 Sebanyak 3 Lembar</li>
+                        <li>Mengisi Formulir Pendaftaran</li>
+                        <li>Foto Copy Kartu PIP atau SKTM</li>
+                        <li>Foto Copy KTP Ortu Sebanyak 2 Lembar</li>
+                        <li>Foto Copy Ijazah MI/SD 3 Lembar</li>
+                        <li>Niat Kuat Dalam KBM dan Pesantren</li>
+                    </ul>
+                </div>
+                
+                <div class="info-col">
+                    <h4><i class="fa-solid fa-calendar-days"></i> Alur & Jadwal Pendaftaran</h4>
+                    <div class="schedule-item">
+                        <i class="fa-solid fa-calendar"></i>
+                        <div><strong>Tanggal:</strong> 1 Januari s.d 30 Juni 2026</div>
+                    </div>
+                    <div class="schedule-item">
+                        <i class="fa-solid fa-clock"></i>
+                        <div><strong>Waktu:</strong> 08.00 s.d 20.00 WIB</div>
+                    </div>
+                    <div class="schedule-item">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <div><strong>Tempat:</strong> Sekretariat SMP Nurul Islam</div>
+                    </div>
+                    
+                    <button class="btn-register-now" id="innerRegisterBtn">
+                        <i class="fa-solid fa-gift"></i> PENDAFTARAN GRATIS!
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>SMP Nurul Islam</h3>
+                    <p style="color: #bbb; line-height: 1.7; margin-bottom: 20px;">Mencetak generasi cerdas, berakhlak mulia, dan berwawasan lingkungan.</p>
+                    <div class="adw-badge"><i class="fa-solid fa-leaf"></i> Sekolah Adiwiyata</div>
+                </div>
+                <div class="footer-col">
+                    <h3>Kontak Kami</h3>
+                    <p><i class="fa-solid fa-location-dot"></i> Triwung Lor - Kademangan - Kota Probolinggo</p>
+                    <p><i class="fa-solid fa-phone"></i> Ust. Soleh: 082-334-404-317</p>
+                    <p><i class="fa-solid fa-phone"></i> Ibu Azizah: 081-336-857-765</p>
+                    <p><i class="fa-solid fa-phone"></i> Fajar Almi Z.: 082-333-595-106</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Tautan Pintas</h3>
+                    <a href="index.html#about">Tentang Kami</a>
+                    <a href="index.html#news">Berita & Pengumuman</a>
+                    <a href="#">Pendaftaran Siswa Baru</a>
+                </div>
+            </div>
+            <div class="footer-bottom" style="display: flex; flex-direction: column; gap: 6px;">
+                <p>&copy; 2026 SMP Nurul Islam Probolinggo. All Rights Reserved. Codebase protected under legal copyright.</p>
+                <p style="font-size: 0.85rem; color: #555; font-family: 'Courier New', Courier, monospace;">Built with &hearts; and Engineered by <span style="color: #2e7d32; font-weight: 600;">Nazilurrohmah</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="chatbot-widget">
+        <div class="chatbot-window" id="chatbotWindow">
+            <div class="chat-header">
+                <div><i class="fa-solid fa-robot"></i> Tanya PPDB AI</div>
+                <button class="close-chat" id="closeChat">&times;</button>
+            </div>
+            <iframe src="https://nazilurrohmah-smpnuris.hf.space"></iframe>
+        </div>
+        <button class="chatbot-btn" id="chatbotBtn">
+            <i class="fa-solid fa-comments"></i> Tanya PPDB
+        </button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatbotBtn = document.getElementById('chatbotBtn');
+            const chatbotWindow = document.getElementById('chatbotWindow');
+            const closeChat = document.getElementById('closeChat');
+            const innerBotBox = document.getElementById('innerBotBox');
+            const innerRegisterBtn = document.getElementById('innerRegisterBtn');
+
+            function toggleChat() {
+                if (chatbotWindow.style.display === "none" || chatbotWindow.style.display === "") {
+                    chatbotWindow.style.display = "flex";
+                } else {
+                    chatbotWindow.style.display = "none";
+                }
+            }
+
+            chatbotBtn.addEventListener('click', toggleChat);
+            if(innerBotBox) innerBotBox.addEventListener('click', toggleChat);
+            if(innerRegisterBtn) innerRegisterBtn.addEventListener('click', toggleChat);
+            closeChat.addEventListener('click', () => { chatbotWindow.style.display = "none"; });
+        });
+    </script>
+</body>
+</html>
