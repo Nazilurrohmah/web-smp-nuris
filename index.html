@@ -117,23 +117,22 @@
                 </div>
                 <ul class="nav-links">
                     <li><a href="#">Beranda</a></li>
-                    <li><a href="#">Profil</a></li>
-                    <li><a href="#">Berita</a></li>
-                    <li><a href="#" class="btn nav-btn">PPDB Online</a></li>
+                    <li><a href="#about">Profil</a></li>
+                    <li><a href="#news">Berita</a></li>
+                    <li><a href="{% url 'ppdb' %}" class="btn nav-btn">PPDB Online</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <section class="hero">
-        <div class="container">
-            <i class="fa-solid fa-school logo-center"></i>
-            <h1>Selamat Datang di SMP Nurul Islam</h1>
-            <p>Membentuk pribadi cerdas, berintegritas, dan berprestasi berlandaskan nilai-nilai karakter bangsa.</p>
-            <li><a href="{% url 'ppdb' %}" class="btn nav-btn">PPDB Online</a></li>
-        </div>
-    </section>
-
+    <div class="container">
+        <i class="fa-solid fa-school logo-center"></i>
+        <h1>Selamat Datang di SMP Nurul Islam</h1>
+        <p>Membentuk pribadi cerdas, berintegritas, dan berprestasi berlandaskan nilai-nilai karakter bangsa.</p>
+        <a href="{% url 'ppdb' %}" class="btn btn-hero">Daftar Sekarang (PPDB)</a>
+    </div>
+</section>
     <section id="about">
         <div class="container">
             <div class="about-grid">
@@ -204,20 +203,19 @@
                 </div>
                 <div class="footer-col">
                     <h3>Tautan Pintas</h3>
-                    <a href="#">Tentang Kami</a>
-                    <a href="#">Berita & Pengumuman</a>
-                    <a href="#">Pendaftaran Siswa Baru</a>
+                    <a href="#about">Tentang Kami</a>
+                    <a href="#news">Berita & Pengumuman</a>
+                    <a href="{% url 'ppdb' %}">Pendaftaran Siswa Baru</a>
                 </div>
             </div>
             
-            <div class="footer-bottom" style="display: flex; flex-direction: column; gap: 8px;">
-                <p>&copy; 2026 SMP Nurul Islam Probolinggo. Seluruh Hak Cipta Dilindungi Undang-Undang.</p>
+            <div class="footer-bottom" style="display: flex; flex-direction: column; gap: 6px; padding-top: 25px; border-top: 1px solid #2d2d2d;">
                 <p style="letter-spacing: 0.5px;">
-                    &copy; All Rights Reserved. Codebase protected under legal copyright.
+                    &copy; 2026 SMP Nurul Islam Probolinggo. All Rights Reserved. Codebase protected under legal copyright.
                 </p>
                 <p style="font-size: 0.85rem; color: #555; font-family: 'Courier New', Courier, monospace; margin-top: 4px;">
                     Built with <span style="color: #e25555;">&hearts;</span> and Engineered by 
-                    <span style="color: #2e7d32; font-weight: 600; letter-spacing: 1px;">[Nazilurrohmah]</span>
+                    <span style="color: #2e7d32; font-weight: 600; letter-spacing: 1px;">Nazilurrohmah</span>
                 </p>
             </div>
         </div>
