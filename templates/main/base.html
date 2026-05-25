@@ -67,87 +67,44 @@
 
     <!-- Wadah Chatbot PPDB -->
     <div class="chatbot-widget">
-        <div class="chatbot-window" id="chatbotWindow">
-            <div class="chat-header">
-                <div><i class="fa-solid fa-robot"></i> Tanya PPDB</div>
-                <button class="close-chat" id="closeChat">&times;</button>
+        <div class="chatbot-window" id="chatbotWindow" style="width: 400px; height: 550px; display: none; flex-direction: column; overflow: hidden; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); background: white; position: fixed; bottom: 95px; right: 25px; z-index: 10000;">
+            <div class="chat-header" style="background: #1b5e20; color: white; padding: 15px; font-weight: bold; display: flex; justify-content: space-between; align-items: center;">
+                <div><i class="fa-solid fa-robot"></i> Tanya PPDB AI</div>
+                <button class="close-chat" id="closeChat" style="background: none; border: none; color: white; font-size: 22px; cursor: pointer;">&times;</button>
             </div>
-            <div class="chat-body" id="chatBody">
-                <div class="chat-msg bot">
-                    Halo! Saya asisten virtual SMP Nurul Islam. Ada yang bisa saya bantu terkait Pendaftaran Peserta Didik Baru (PPDB)?
-                </div>
-            </div>
-            <div class="chat-footer">
-                <input type="text" class="chat-input" id="chatInput" placeholder="Ketik pesan Anda disini...">
-                <button class="send-btn" id="sendBtn"><i class="fa-solid fa-paper-plane"></i></button>
-            </div>
+            <iframe src="https://nazilurrohmah-smpnuris.hf.space" style="width: 100%; height: 100%; border: none;"></iframe>
         </div>
-        <button class="chatbot-btn" id="chatbotBtn">
+        
+        <button class="chatbot-btn" id="chatbotBtn" style="position: fixed; bottom: 25px; right: 25px; padding: 12px 20px; background-color: #1b5e20; color: white; border: none; border-radius: 50px; font-weight: bold; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.3); z-index: 10000; display: flex; align-items: center; gap: 8px;">
             <i class="fa-solid fa-comments"></i> Tanya PPDB
         </button>
     </div>
 
-    <!-- Chatbot Logic Script (Wadah) -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const chatbotBtn = document.getElementById('chatbotBtn');
             const chatbotWindow = document.getElementById('chatbotWindow');
             const closeChat = document.getElementById('closeChat');
-            const sendBtn = document.getElementById('sendBtn');
-            const chatInput = document.getElementById('chatInput');
-            const chatBody = document.getElementById('chatBody');
 
-            // Toggle Open/Close
+            // Fungsi Klik Tombol untuk Buka / Tutup Jendela Chatbot
             chatbotBtn.addEventListener('click', () => {
-                chatbotWindow.classList.toggle('active');
+                if (chatbotWindow.style.display === "none" || chatbotWindow.style.display === "") {
+                    chatbotWindow.style.display = "flex";
+                } else {
+                    chatbotWindow.style.display = "none";
+                }
             });
 
+            // Fungsi Tombol Cross (X) untuk Menutup Chatbot
             closeChat.addEventListener('click', () => {
-                chatbotWindow.classList.remove('active');
+                chatbotWindow.style.display = "none";
             });
 
-            // Handle sending message UI logic
-            const sendMessage = () => {
-                const text = chatInput.value.trim();
-                if(text) {
-                    // Create user message
-                    const msgDiv = document.createElement('div');
-                    msgDiv.className = 'chat-msg user';
-                    msgDiv.textContent = text;
-                    chatBody.appendChild(msgDiv);
-                    
-                    // Clear input
-                    chatInput.value = '';
-                    
-                    // Scroll to bottom
-                    chatBody.scrollTop = chatBody.scrollHeight;
-
-                    // TODO (Tugas Akhir): Implement real backend logic here
-                    // For now, simulate bot typing...
-                    setTimeout(() => {
-                        const botDiv = document.createElement('div');
-                        botDiv.className = 'chat-msg bot';
-                        botDiv.textContent = "Pesan Anda diterima. (Ini adalah wadah/wadah sementara. Integrasikan backend chatbot Tugas Akhir Anda di sini.)";
-                        chatBody.appendChild(botDiv);
-                        chatBody.scrollTop = chatBody.scrollHeight;
-                    }, 1000);
-                }
-            };
-
-            sendBtn.addEventListener('click', sendMessage);
-            chatInput.addEventListener('keypress', function (e) {
-                if (e.key === 'Enter') {
-                    sendMessage();
-                }
-            });
-
-            // Scroll Animation Observer for sections
+            // Scroll Animation Observer (Bawaan Kode Aslimu)
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('in-view');
-                        // Optional: remove observer if you want it to animate only once
-                        // observer.unobserve(entry.target); 
                     }
                 });
             }, { threshold: 0.15 });
