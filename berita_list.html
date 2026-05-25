@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berita & Pengumuman - SMP Nurul Islam Probolinggo</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; color: #333; background-color: #f1f8f1; line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 30px; }
+        a { text-decoration: none; transition: all 0.3s ease; }
+
+        /* --- Header --- */
+        header { background-color: white; box-shadow: 0 4px 15px rgba(0,0,0,0.05); position: fixed; width: 100%; top: 0; z-index: 9999; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; }
+        .logo { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 1.25rem; color: #1a7442; }
+        .logo i { font-size: 1.5rem; }
+        .nav-links { display: flex; list-style: none; gap: 30px; align-items: center; }
+        .nav-links a { color: #555; font-weight: 500; font-size: 0.95rem; }
+        .nav-links a:hover { color: #1a7442; }
+        .nav-btn { background-color: #1a7442; color: white !important; padding: 10px 22px; border-radius: 6px; }
+
+        /* --- Hero --- */
+        .hero-news { background: linear-gradient(135deg, #1b5e20 0%, #1a7442 100%); color: white; padding: 140px 20px 70px; text-align: center; }
+        .hero-news h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 10px; }
+
+        /* --- Konten Utama --- */
+        .main-content { padding: 40px 0 80px; }
+        .back-link { display: inline-flex; align-items: center; gap: 8px; color: #1a7442; font-weight: 500; margin-bottom: 30px; font-size: 0.95rem; }
+        .back-link:hover { color: #145a33; }
+
+        /* --- Daftar Berita (Flex/Column Container) --- */
+        .news-list-container { display: flex; flex-direction: column; gap: 30px; }
+
+        /* --- Kartu Berita Satuan --- */
+        .news-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.04); display: flex; flex-direction: column; }
+        
+        .news-img-box { width: 100%; height: 260px; background-color: #e8f5e9; display: flex; justify-content: center; align-items: center; color: #1a7442; border-bottom: 1px solid #eee; position: relative; }
+        .news-img-box i { font-size: 4rem; }
+        .news-img-box img { width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; }
+
+        .news-body { padding: 30px; }
+        .news-meta { font-size: 0.85rem; color: #888; display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+        .news-body h2 { font-size: 1.4rem; color: #222; margin-bottom: 15px; font-weight: 700; line-height: 1.4; }
+        .news-body p { color: #666; font-size: 0.95rem; margin-bottom: 20px; line-height: 1.7; text-align: justify; }
+        
+        .read-more-btn { display: inline-flex; align-items: center; gap: 6px; color: #1a7442; font-weight: 600; font-size: 0.95rem; }
+        .read-more-btn:hover { color: #145a33; gap: 10px; }
+
+        /* --- Footer --- */
+        footer { background-color: #0c1a11; color: white; padding: 70px 0 30px; border-top: 4px solid #1a7442; }
+        .footer-content { display: flex; flex-wrap: wrap; gap: 50px; justify-content: space-between; margin-bottom: 40px; }
+        .footer-col { flex: 1; min-width: 280px; }
+        .footer-col h3 { color: white; margin-bottom: 25px; font-size: 1.2rem; font-weight: 600; }
+        .footer-col p { margin-bottom: 15px; font-size: 0.9rem; display: flex; align-items: flex-start; gap: 12px; color: #eee; }
+        .footer-col i { color: #2e7d32; font-size: 1.1rem; width: 18px; text-align: center; margin-top: 3px; }
+        .footer-col a { color: #eee; text-decoration: none; display: block; margin-bottom: 12px; font-size: 0.95rem; }
+        .footer-col a:hover { color: white; padding-left: 5px; }
+        .adw-badge { background-color: #2e7d32; color: white; padding: 6px 12px; border-radius: 20px; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 5px; margin-top: 15px; }
+        .footer-bottom { text-align: center; border-top: 1px solid #2d2d2d; padding-top: 25px; font-size: 0.9rem; color: #aaa; }
+
+        /* --- Chatbot --- */
+        .chatbot-widget { position: fixed; bottom: 25px; right: 25px; z-index: 10000; }
+        .chatbot-window { width: 400px; height: 550px; display: none; flex-direction: column; overflow: hidden; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.25); background: white; position: fixed; bottom: 95px; right: 25px; border: 1px solid #ddd; }
+        .chat-header { background: #1a7442; color: white; padding: 15px 20px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; }
+        .close-chat { background: none; border: none; color: white; font-size: 24px; cursor: pointer; opacity: 0.8; }
+        .close-chat:hover { opacity: 1; }
+        .chatbot-window iframe { width: 100%; height: 100%; border: none; }
+        .chatbot-btn { padding: 12px 20px; background-color: #1a7442; color: white; border-radius: 50px; display: flex; align-items: center; gap: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); cursor: pointer; border: none; font-family: inherit; font-size: 0.95rem;}
+        .chatbot-btn:hover { background-color: #145a33; transform: scale(1.03); }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fa-solid fa-school"></i>
+                    SMP Nurul Islam
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Beranda</a></li>
+                    <li><a href="profile.html">Profil</a></li>
+                    <li><a href="#" style="color: #1a7442;">Berita</a></li>
+                    <li><a href="ppdb.html" class="btn nav-btn">PPDB Online</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero-news">
+        <div class="container">
+            <h1>Berita & Pengumuman</h1>
+        </div>
+    </section>
+
+    <main class="container main-content">
+        <a href="index.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Kembali ke Beranda</a>
+        
+        <div class="news-list-container">
+            
+            <div class="news-card">
+                <div class="news-img-box">
+                    <i class="fa-solid fa-newspaper"></i>
+                </div>
+                <div class="news-body">
+                    <div class="news-meta"><i class="fa-solid fa-calendar-days"></i> 08 Apr 2026</div>
+                    <h2>Pengumuman Penerimaan Murid Baru (PPDB) 2026-2027</h2>
+                    <p>📣 PENGUMUMAN PENERIMAAN MURID BARU (PPDB) 2026-2027 📣 Telah Dibuka Pendaftaran Peserta Didik Baru (PPDB) Tahun Ajaran 2026/2027 di SMP Nurul Islam Probolinggo. Bergabunglah bersama kami untuk mewujudkan generasi yang cerdas, berintegritas, mandiri, serta berakhlakul karimah berlandaskan nilai-nilai luhur kepesantrenan.</p>
+                    <a href="berita_detail.html" class="read-more-btn">Baca Selengkapnya <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>SMP Nurul Islam</h3>
+                    <p style="color: #bbb; line-height: 1.7; margin-bottom: 20px;">Mencetak generasi cerdas, berakhlak mulia, dan berwawasan lingkungan.</p>
+                    <div class="adw-badge"><i class="fa-solid fa-leaf"></i> Sekolah Adiwiyata</div>
+                </div>
+                <div class="footer-col">
+                    <h3>Kontak Kami</h3>
+                    <p><i class="fa-solid fa-location-dot"></i> Triwung Lor - Kademangan - Kota Probolinggo</p>
+                    <p><i class="fa-solid fa-phone"></i> Ust. Soleh: 082-334-404-317</p>
+                    <p><i class="fa-solid fa-phone"></i> Ibu Azizah: 081-336-857-765</p>
+                    <p><i class="fa-solid fa-phone"></i> Fajar Almi Z.: 082-333-595-106</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Tautan Pintas</h3>
+                    <a href="profile.html">Tentang Kami</a>
+                    <a href="#">Berita & Pengumuman</a>
+                    <a href="ppdb.html">Pendaftaran Siswa Baru</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 SMP Nurul Islam Probolinggo. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="chatbot-widget">
+        <div class="chatbot-window" id="chatbotWindow">
+            <div class="chat-header">
+                <div><i class="fa-solid fa-robot"></i> Tanya PPDB AI</div>
+                <button class="close-chat" id="closeChat">&times;</button>
+            </div>
+            <iframe src="https://nazilurrohmah-smpnuris.hf.space"></iframe>
+        </div>
+        <button class="chatbot-btn" id="chatbotBtn">
+            <i class="fa-solid fa-comments"></i> Tanya PPDB
+        </button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatbotBtn = document.getElementById('chatbotBtn');
+            const chatbotWindow = document.getElementById('chatbotWindow');
+            const closeChat = document.getElementById('closeChat');
+
+            chatbotBtn.addEventListener('click', () => {
+                if (chatbotWindow.style.display === "none" || chatbotWindow.style.display === "") {
+                    chatbotWindow.style.display = "flex";
+                } else {
+                    chatbotWindow.style.display = "none";
+                }
+            });
+            closeChat.addEventListener('click', () => { chatbotWindow.style.display = "none"; });
+        });
+    </script>
+</body>
+</html>
