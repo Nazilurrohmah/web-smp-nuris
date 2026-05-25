@@ -1,52 +1,107 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}SMP Nurul Islam{% endblock %}</title>
+    <title>SMP Nurul Islam Probolinggo</title>
     <meta name="description" content="Profil Resmi SMP Nurul Islam">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Desain Utama Website Sekolah */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; color: #333; background-color: #f4f6f4; line-height: 1.6; padding-top: 80px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        
+        /* Navigasi Atas */
+        header { background-color: #ffffff; box-shadow: 0 4px 12px rgba(0,0,0,0.06); position: fixed; width: 100%; top: 0; left: 0; z-index: 9999; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; }
+        .logo { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 1.3rem; color: #1b5e20; }
+        .logo i { font-size: 1.5rem; }
+        .nav-links { display: flex; list-style: none; gap: 28px; align-items: center; }
+        .nav-links a { text-decoration: none; color: #444; font-weight: 600; font-size: 0.95rem; transition: color 0.3s; }
+        .nav-links a:hover { color: #1b5e20; }
+        .btn-primary { background-color: #1b5e20; color: white !important; padding: 10px 22px; border-radius: 6px; font-weight: 600; transition: background 0.3s; box-shadow: 0 4px 10px rgba(27,94,32,0.2); }
+        .btn-primary:hover { background-color: #144317; }
+
+        /* Banner Hero */
+        .hero-section { background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%); color: white; padding: 80px 30px; border-radius: 16px; text-align: center; margin-top: 20px; margin-bottom: 40px; box-shadow: 0 10px 30px rgba(27,94,32,0.15); }
+        .hero-section h1 { font-size: 2.8rem; font-weight: 700; margin-bottom: 16px; letter-spacing: -0.5px; }
+        .hero-section p { font-size: 1.2rem; opacity: 0.95; max-width: 700px; margin: 0 auto; font-weight: 400; }
+
+        /* Kotak Informasi Jalur Utama */
+        .main-info { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); margin-bottom: 50px; }
+        .main-info h2 { color: #1b5e20; margin-bottom: 15px; font-size: 1.6rem; border-left: 5px solid #1b5e20; padding-left: 15px; }
+        .main-info p { color: #555; font-size: 1.05rem; line-height: 1.8; margin-bottom: 25px; }
+
+        /* Footer Informasi Kontak Asli */
+        footer { background-color: #1a1a1a; color: #cccccc; padding: 60px 0 30px 0; margin-top: 60px; border-top: 4px solid #1b5e20; }
+        .footer-content { display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; margin-bottom: 40px; }
+        .footer-col { flex: 1; min-width: 280px; }
+        .footer-col h3 { color: white; margin-bottom: 22px; font-size: 1.25rem; font-weight: 600; position: relative; }
+        .footer-col h3::after { content: ''; position: absolute; left: 0; bottom: -6px; width: 40px; height: 2px; background-color: #2e7d32; }
+        .footer-col p { margin-bottom: 12px; font-size: 0.95rem; display: flex; align-items: flex-start; gap: 10px; line-height: 1.5; }
+        .footer-col i { color: #2e7d32; margin-top: 4px; font-size: 1rem; width: 15px; text-align: center; }
+        .footer-col a { color: #cccc; text-decoration: none; transition: color 0.3s; display: block; margin-bottom: 10px; }
+        .footer-col a:hover { color: white; padding-left: 4px; }
+        .footer-bottom { text-align: center; border-top: 1px solid #2d2d2d; padding-top: 25px; font-size: 0.9rem; color: #888; }
+
+        /* Widget Pembungkus Chatbot AI */
+        .chatbot-widget { position: fixed; bottom: 25px; right: 25px; z-index: 10000; }
+        .chatbot-window { width: 400px; height: 550px; display: none; flex-direction: column; overflow: hidden; border-radius: 14px; box-shadow: 0 12px 35px rgba(0,0,0,0.25); background: white; position: fixed; bottom: 95px; right: 25px; border: 1px solid #e0e0e0; }
+        .chat-header { background: #1b5e20; color: white; padding: 16px 20px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; font-size: 1.05rem; }
+        .close-chat { background: none; border: none; color: white; font-size: 24px; cursor: pointer; opacity: 0.85; }
+        .close-chat:hover { opacity: 1; }
+        .chatbot-window iframe { width: 100%; height: 100%; border: none; }
+        .chatbot-btn { padding: 14px 24px; background-color: #1b5e20; color: white; border: none; border-radius: 50px; font-weight: 600; font-family: 'Inter', sans-serif; font-size: 0.95rem; cursor: pointer; box-shadow: 0 6px 20px rgba(27,94,32,0.4); display: flex; align-items: center; gap: 10px; transition: all 0.3s ease; }
+        .chatbot-btn:hover { transform: translateY(-3px); background-color: #144317; box-shadow: 0 8px 25px rgba(27,94,32,0.5); }
+    </style>
 </head>
 <body>
 
-    <!-- Header Navigation -->
     <header>
         <div class="container">
             <nav>
                 <div class="logo">
-                    <img src="{% static 'img/logo.png' %}" alt="Logo SMP Nurul Islam" style="height: 45px; width: auto; object-fit: contain;">
+                    <i class="fa-solid fa-school"></i>
                     SMP Nurul Islam
                 </div>
                 <ul class="nav-links">
-                    <li><a href="{% url 'home' %}">Beranda</a></li>
-                    <li><a href="{% url 'profile' %}">Profil</a></li>
-                    <li><a href="{% url 'berita_list' %}">Berita</a></li>
-                    <li><a href="{% url 'ppdb' %}" class="btn-primary" style="padding: 0.5rem 1rem;">PPDB Online</a></li>
+                    <li><a href="#">Beranda</a></li>
+                    <li><a href="#">Profil</a></li>
+                    <li><a href="#">Berita</a></li>
+                    <li><a href="#" class="btn-primary">PPDB Online</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Main Content -->
-    <main>
-        {% block content %}
-        {% endblock content %}
+    <main class="container">
+        <div class="hero-section">
+            <h1>Selamat Datang di SMP Nurul Islam</h1>
+            <p>Mencetak generasi cerdas, berakhlak mulia, dan berbasis teknologi informasi di Kota Probolinggo.</p>
+        </div>
+        
+        <div class="main-info">
+            <h2>Visi & Misi Sekolah</h2>
+            <p style="margin-top: 15px;"><strong>Visi:</strong> Terwujudnya insan yang religius, cerdas, terampil, dan berwawasan lingkungan.</p>
+            
+            <h2>Informasi Pendaftaran</h2>
+            <p>Selamat datang di layanan portal informasi resmi pendaftaran siswa baru SMP Nurul Islam Probolinggo. Layanan ini dirancang untuk mempermudah wali murid, calon siswa, maupun masyarakat luas dalam mengakses info valid mengenai administrasi pendaftaran, jadwal belajar, dan kegiatan yayasan.</p>
+        </div>
     </main>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-col">
                     <h3>SMP Nurul Islam</h3>
-                    <p>Mencetak generasi cerdas, berakhlak mulia, dan berwawasan lingkungan.</p>
+                    <p style="color: #aaa; line-height: 1.7;">Mencetak generasi cerdas, berakhlak mulia, dan berwawasan lingkungan.</p>
                 </div>
                 <div class="footer-col">
-                    <h3>Kontak Kami</h3>
+                    <h3>Kontak Resmi Kami</h3>
                     <p><i class="fa-solid fa-location-dot"></i> Triwung Lor - Kademangan - Kota Probolinggo</p>
                     <p><i class="fa-solid fa-phone"></i> Ust. Soleh: 082-334-404-317</p>
                     <p><i class="fa-solid fa-phone"></i> Ibu Azizah: 081-336-857-765</p>
@@ -54,28 +109,26 @@
                 </div>
                 <div class="footer-col">
                     <h3>Tautan Pintas</h3>
-                    <p><a href="{% url 'profile' %}">Tentang Kami</a></p>
-                    <p><a href="{% url 'berita_list' %}">Berita & Pengumuman</a></p>
-                    <p><a href="{% url 'ppdb' %}">Pendaftaran Siswa Baru</a></p>
+                    <a href="#">Tentang Kami</a>
+                    <a href="#">Berita & Pengumuman</a>
+                    <a href="#">Pendaftaran Siswa Baru</a>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; {% now "Y" %} SMP Nurul Islam. All Rights Reserved.</p>
+                <p>&copy; 2026 SMP Nurul Islam. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Wadah Chatbot PPDB -->
     <div class="chatbot-widget">
-        <div class="chatbot-window" id="chatbotWindow" style="width: 400px; height: 550px; display: none; flex-direction: column; overflow: hidden; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); background: white; position: fixed; bottom: 95px; right: 25px; z-index: 10000;">
-            <div class="chat-header" style="background: #1b5e20; color: white; padding: 15px; font-weight: bold; display: flex; justify-content: space-between; align-items: center;">
+        <div class="chatbot-window" id="chatbotWindow">
+            <div class="chat-header">
                 <div><i class="fa-solid fa-robot"></i> Tanya PPDB AI</div>
-                <button class="close-chat" id="closeChat" style="background: none; border: none; color: white; font-size: 22px; cursor: pointer;">&times;</button>
+                <button class="close-chat" id="closeChat">&times;</button>
             </div>
-            <iframe src="https://nazilurrohmah-smpnuris.hf.space" style="width: 100%; height: 100%; border: none;"></iframe>
+            <iframe src="https://nazilurrohmah-smpnuris.hf.space"></iframe>
         </div>
-        
-        <button class="chatbot-btn" id="chatbotBtn" style="position: fixed; bottom: 25px; right: 25px; padding: 12px 20px; background-color: #1b5e20; color: white; border: none; border-radius: 50px; font-weight: bold; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.3); z-index: 10000; display: flex; align-items: center; gap: 8px;">
+        <button class="chatbot-btn" id="chatbotBtn">
             <i class="fa-solid fa-comments"></i> Tanya PPDB
         </button>
     </div>
@@ -86,7 +139,6 @@
             const chatbotWindow = document.getElementById('chatbotWindow');
             const closeChat = document.getElementById('closeChat');
 
-            // Fungsi Klik Tombol untuk Buka / Tutup Jendela Chatbot
             chatbotBtn.addEventListener('click', () => {
                 if (chatbotWindow.style.display === "none" || chatbotWindow.style.display === "") {
                     chatbotWindow.style.display = "flex";
@@ -95,27 +147,10 @@
                 }
             });
 
-            // Fungsi Tombol Cross (X) untuk Menutup Chatbot
             closeChat.addEventListener('click', () => {
                 chatbotWindow.style.display = "none";
             });
-
-            // Scroll Animation Observer (Bawaan Kode Aslimu)
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('in-view');
-                    }
-                });
-            }, { threshold: 0.15 });
-
-            document.querySelectorAll('.section').forEach((section) => {
-                observer.observe(section);
-            });
         });
     </script>
-    <div style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;">
-    <iframe src="https://nazilurrohmah-smpnuris.hf.space" width="350px" height="500px" style="border: none; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);"></iframe>
-</div>
 </body>
 </html>
