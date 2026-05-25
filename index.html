@@ -1,93 +1,43 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SMP Nurul Islam Probolinggo</title>
+    <title>{% block title %}SMP Nurul Islam{% endblock %}</title>
     <meta name="description" content="Profil Resmi SMP Nurul Islam">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* CSS Reset & Variabel */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; color: #333; background-color: #f4f6f4; line-height: 1.6; padding-top: 80px; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-        
-        /* Header & Navigasi Sesuai Kode Aslimu */
-        header { background-color: #ffffff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: fixed; width: 100%; top: 0; left: 0; z-index: 9999; }
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; }
-        .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.2rem; color: #1b5e20; }
-        .nav-links { display: flex; list-style: none; gap: 20px; align-items: center; }
-        .nav-links a { text-decoration: none; color: #555; font-weight: 500; transition: color 0.3s; }
-        .nav-links a:hover { color: #1b5e20; }
-        .btn-primary { background-color: #1b5e20; color: white !important; padding: 0.5rem 1rem; border-radius: 4px; text-decoration: none; font-weight: 500; transition: background 0.3s; }
-        .btn-primary:hover { background-color: #144317; }
-
-        /* Main Content Style */
-        main { min-height: 60vh; padding: 30px 0; }
-        .hero-section { background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%); color: white; padding: 80px 20px; border-radius: 10px; text-align: center; margin-bottom: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        .hero-section h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 15px; }
-        .hero-section p { font-size: 1.1rem; opacity: 0.9; max-width: 600px; margin: 0 auto; }
-
-        .main-info { background: white; padding: 40px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.03); margin-bottom: 40px; }
-        .main-info h2 { color: #1b5e20; margin-bottom: 15px; font-size: 1.6rem; }
-        .main-info p { color: #555; font-size: 1.05rem; line-height: 1.8; }
-
-        /* Footer Megah Sesuai Data Kontak Aslimu */
-        footer { background-color: #111; color: #bbb; padding: 60px 0 20px 0; margin-top: 60px; }
-        .footer-content { display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; margin-bottom: 40px; }
-        .footer-col { flex: 1; min-width: 250px; }
-        .footer-col h3 { color: white; margin-bottom: 20px; font-size: 1.2rem; font-weight: 600; }
-        .footer-col p { margin-bottom: 12px; font-size: 0.9rem; line-height: 1.5; }
-        .footer-col i { margin-right: 10px; color: #2e7d32; width: 15px; text-align: center; }
-        .footer-col a { color: #bbb; text-decoration: none; transition: color 0.3s; display: block; margin-bottom: 10px; }
-        .footer-col a:hover { color: white; }
-        .footer-bottom { text-align: center; border-top: 1px solid #222; padding-top: 20px; font-size: 0.85rem; color: #666; }
-
-        /* Wadah Chatbot Terintegrasi Hugging Face */
-        .chatbot-widget { position: fixed; bottom: 25px; right: 25px; z-index: 10000; }
-        .chatbot-window { width: 400px; height: 550px; display: none; flex-direction: column; overflow: hidden; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); background: white; position: fixed; bottom: 95px; right: 25px; border: 1px solid #ddd; }
-        .chat-header { background: #1b5e20; color: white; padding: 15px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
-        .close-chat { background: none; border: none; color: white; font-size: 22px; cursor: pointer; }
-        .chatbot-window iframe { width: 100%; height: 100%; border: none; }
-        .chatbot-btn { padding: 12px 20px; background-color: #1b5e20; color: white; border: none; border-radius: 50px; font-weight: bold; font-family: 'Inter', sans-serif; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.3); display: flex; align-items: center; gap: 8px; transition: background 0.2s; }
-        .chatbot-btn:hover { background-color: #144317; }
-    </style>
 </head>
 <body>
 
+    <!-- Header Navigation -->
     <header>
         <div class="container">
             <nav>
                 <div class="logo">
-                    <i class="fa-solid fa-school" style="font-size: 1.4rem;"></i>
+                    <img src="{% static 'img/logo.png' %}" alt="Logo SMP Nurul Islam" style="height: 45px; width: auto; object-fit: contain;">
                     SMP Nurul Islam
                 </div>
                 <ul class="nav-links">
-                    <li><a href="#">Beranda</a></li>
-                    <li><a href="#">Profil</a></li>
-                    <li><a href="#">Berita</a></li>
-                    <li><a href="#" class="btn-primary">PPDB Online</a></li>
+                    <li><a href="{% url 'home' %}">Beranda</a></li>
+                    <li><a href="{% url 'profile' %}">Profil</a></li>
+                    <li><a href="{% url 'berita_list' %}">Berita</a></li>
+                    <li><a href="{% url 'ppdb' %}" class="btn-primary" style="padding: 0.5rem 1rem;">PPDB Online</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <main class="container">
-        <div class="hero-section">
-            <h1>SMP Nurul Islam</h1>
-            <p>Mencetak generasi cerdas, berakhlak mulia, dan berwawasan lingkungan.</p>
-        </div>
-        
-        <div class="main-info">
-            <h2>Selamat Datang</h2>
-            <p style="margin-top: 15px;">Selamat datang di website resmi pendaftaran siswa baru SMP Nurul Islam Probolinggo. Kami berkomitmen mencetak generasi unggul, berakhlak mulia, dan berbasis teknologi informasi.</p>
-            
-            <h2 style="margin-top: 30px;">Visi & Misi</h2>
-            <p style="margin-top: 15px;"><strong>Visi:</strong> Terwujudnya insan yang religius, cerdas, terampil, dan berwawasan lingkungan.</p>
-        </div>
+    <!-- Main Content -->
+    <main>
+        {% block content %}
+        {% endblock content %}
     </main>
 
+    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -104,26 +54,28 @@
                 </div>
                 <div class="footer-col">
                     <h3>Tautan Pintas</h3>
-                    <a href="#">Tentang Kami</a>
-                    <a href="#">Berita & Pengumuman</a>
-                    <a href="#">Pendaftaran Siswa Baru</a>
+                    <p><a href="{% url 'profile' %}">Tentang Kami</a></p>
+                    <p><a href="{% url 'berita_list' %}">Berita & Pengumuman</a></p>
+                    <p><a href="{% url 'ppdb' %}">Pendaftaran Siswa Baru</a></p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 SMP Nurul Islam. All Rights Reserved.</p>
+                <p>&copy; {% now "Y" %} SMP Nurul Islam. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
 
+    <!-- Wadah Chatbot PPDB -->
     <div class="chatbot-widget">
-        <div class="chatbot-window" id="chatbotWindow">
-            <div class="chat-header">
+        <div class="chatbot-window" id="chatbotWindow" style="width: 400px; height: 550px; display: none; flex-direction: column; overflow: hidden; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); background: white; position: fixed; bottom: 95px; right: 25px; z-index: 10000;">
+            <div class="chat-header" style="background: #1b5e20; color: white; padding: 15px; font-weight: bold; display: flex; justify-content: space-between; align-items: center;">
                 <div><i class="fa-solid fa-robot"></i> Tanya PPDB AI</div>
-                <button class="close-chat" id="closeChat">&times;</button>
+                <button class="close-chat" id="closeChat" style="background: none; border: none; color: white; font-size: 22px; cursor: pointer;">&times;</button>
             </div>
-            <iframe src="https://nazilurrohmah-smpnuris.hf.space"></iframe>
+            <iframe src="https://nazilurrohmah-smpnuris.hf.space" style="width: 100%; height: 100%; border: none;"></iframe>
         </div>
-        <button class="chatbot-btn" id="chatbotBtn">
+        
+        <button class="chatbot-btn" id="chatbotBtn" style="position: fixed; bottom: 25px; right: 25px; padding: 12px 20px; background-color: #1b5e20; color: white; border: none; border-radius: 50px; font-weight: bold; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.3); z-index: 10000; display: flex; align-items: center; gap: 8px;">
             <i class="fa-solid fa-comments"></i> Tanya PPDB
         </button>
     </div>
@@ -134,6 +86,7 @@
             const chatbotWindow = document.getElementById('chatbotWindow');
             const closeChat = document.getElementById('closeChat');
 
+            // Fungsi Klik Tombol untuk Buka / Tutup Jendela Chatbot
             chatbotBtn.addEventListener('click', () => {
                 if (chatbotWindow.style.display === "none" || chatbotWindow.style.display === "") {
                     chatbotWindow.style.display = "flex";
@@ -142,10 +95,27 @@
                 }
             });
 
+            // Fungsi Tombol Cross (X) untuk Menutup Chatbot
             closeChat.addEventListener('click', () => {
                 chatbotWindow.style.display = "none";
             });
+
+            // Scroll Animation Observer (Bawaan Kode Aslimu)
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            document.querySelectorAll('.section').forEach((section) => {
+                observer.observe(section);
+            });
         });
     </script>
+    <div style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;">
+    <iframe src="https://nazilurrohmah-smpnuris.hf.space" width="350px" height="500px" style="border: none; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);"></iframe>
+</div>
 </body>
 </html>
