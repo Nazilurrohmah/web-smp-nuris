@@ -22,7 +22,13 @@
         .nav-links a:hover { color: #1a7442; }
         .nav-btn { background-color: #1a7442; color: white !important; padding: 10px 22px; }
         .nav-btn:hover { background-color: #145a33; }
-        .hero { background: linear-gradient(135deg, #1b5e20 0%, #1a7442 100%); color: white; padding: 130px 20px 80px; text-align: center; }
+        .hero {
+            background: linear-gradient(135deg, rgba(27,94,32,0.75) 0%, rgba(26,116,66,0.75) 100%),
+                        url('gedung.jpeg') center center / cover no-repeat;
+            color: white;
+            padding: 130px 20px 80px;
+            text-align: center;
+        }
         .hero .logo-center { font-size: 5rem; margin-bottom: 25px; display: block; }
         .hero h1 { font-size: 3rem; font-weight: 700; margin-bottom: 20px; line-height: 1.2; letter-spacing: -1px; }
         .hero p { font-size: 1.15rem; opacity: 0.9; max-width: 700px; margin: 0 auto 35px; }
@@ -89,7 +95,10 @@
     <header>
         <div class="container">
             <nav>
-                <div class="logo"><i class="fa-solid fa-school"></i> SMP Nurul Islam</div>
+                <div class="logo">
+                    <img src="logo.jpeg" alt="Logo SMP Nurul Islam" style="width:38px;height:38px;object-fit:cover;border-radius:50%;">
+                    SMP Nurul Islam
+                </div>
                 <ul class="nav-links">
                     <li><a href="#">Beranda</a></li>
                     <li><a href="profil.html">Profil</a></li>
@@ -102,7 +111,7 @@
  
     <section class="hero">
         <div class="container">
-            <i class="fa-solid fa-school logo-center"></i>
+            <img src="logo.jpeg" alt="Logo SMP Nurul Islam" style="width:120px;height:120px;object-fit:cover;border-radius:50%;border:4px solid white;box-shadow:0 4px 20px rgba(0,0,0,0.3);margin-bottom:25px;display:block;margin-left:auto;margin-right:auto;">
             <h1>Selamat Datang di SMP Nurul Islam</h1>
             <p>Membentuk pribadi cerdas, berintegritas, dan berprestasi berlandaskan nilai-nilai karakter bangsa.</p>
             <a href="ppdb.html" class="btn btn-hero">Daftar Sekarang (PPDB)</a>
