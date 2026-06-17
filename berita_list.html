@@ -105,21 +105,12 @@
     <main class="container main-content">
         <a href="index.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Kembali ke Beranda</a>
         
-        <div class="news-list-container">
-            
-            <div class="news-card">
-                <div class="news-img" style="overflow:hidden;">
-                    <img src="brosur.jpg" alt="Brosur PPDB 2026-2027" style="width:100%;max-width:600px;display:block;margin:0 auto;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,0.1);">
-                </div>
-                <div class="news-body">
-                    <div class="news-meta"><i class="fa-solid fa-calendar-days"></i> 08 Apr 2026</div>
-                    <h2>Pengumuman Penerimaan Murid Baru (PPDB) 2026-2027</h2>
-                    <p>📣 PENGUMUMAN PENERIMAAN MURID BARU (PPDB) 2026-2027 📣 Telah Dibuka Pendaftaran Peserta Didik Baru (PPDB) Tahun Ajaran 2026/2027 di SMP Nurul Islam Probolinggo. Bergabunglah bersama kami untuk mewujudkan generasi yang cerdas, berintegritas, mandiri, serta berakhlakul karimah berlandaskan nilai-nilai luhur kepesantrenan.</p>
-                    <a href="berita_detail.html" class="read-more-btn">Baca Selengkapnya <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
+        <div class="news-list-container" id="newsList">
+            <div style="text-align:center; padding: 40px; color: #888;">
+                <i class="fa-solid fa-spinner fa-spin" style="font-size:2rem; color:#1a7442;"></i>
+                <p style="margin-top:10px;">Memuat berita...</p>
             </div>
-
-            </div>
+        </div>
     </main>
 
     <footer>
@@ -183,59 +174,143 @@
     </button>
 </div>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const chatbotBtn    = document.getElementById("chatbotBtn");
-        const chatbotWindow = document.getElementById("chatbotWindow");
-        const closeChat     = document.getElementById("closeChat");
-        const chatBody      = document.getElementById("chatBody");
-        const chatInput     = document.getElementById("chatInput");
-        const sendBtn       = document.getElementById("sendBtn");
-        const SPACE_URL     = "https://nazilurrohmah-chatbot-ppdb-smp-nurul-islam.hf.space";
+const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR9XoHYABrnjqS9i4AyHGjO27Nt3a2Xdg8ztdiQaAVgze-prke7NH2AMLQj6ivrkanNGEqt3o-UVoP0/pub?gid=0&single=true&output=csv";
 
-        chatbotBtn.addEventListener("click", () => {
-            chatbotWindow.style.display = (chatbotWindow.style.display === "flex") ? "none" : "flex";
-            if (chatbotWindow.style.display === "flex") chatInput.focus();
+async function loadBerita() {
+    try {
+        const res  = await fetch(SHEET_URL);
+        const text = await res.text();
+        const rows = text.trim().split('\n').slice(1); // skip header
+
+        const container = document.getElementById('newsList');
+        container.innerHTML = '';
+
+        if (rows.length === 0 || (rows.length === 1 && rows[0].trim() === '')) {
+            container.innerHTML = '<p style="text-align:center;color:#888;">Belum ada berita.</p>';
+            return;
+        }
+
+        rows.forEach(row => {
+            // Parse CSV dengan benar (handle koma dalam tanda kutip)
+            const cols = parseCSV(row);
+            if (cols.length < 4) return;
+
+            const id      = cols[0]?.trim();
+            const tanggal = cols[1]?.trim();
+            const judul   = cols[2]?.trim();
+            const isi     = cols[3]?.trim();
+            const foto    = cols[4]?.trim() || '';
+
+            if (!judul) return;
+
+            const fotoHTML = foto
+                ? `<div class="news-img-box" style="overflow:hidden;height:260px;">
+                     <img src="${foto}" alt="${judul}" style="width:100%;height:100%;object-fit:contain;background:#f4faf6;">
+                   </div>`
+                : `<div class="news-img-box" style="height:260px;display:flex;justify-content:center;align-items:center;background:#e8f5e9;">
+                     <i class="fa-solid fa-newspaper" style="font-size:4rem;color:#1a7442;"></i>
+                   </div>`;
+
+            const card = `
+                <div class="news-card">
+                    ${fotoHTML}
+                    <div class="news-body">
+                        <div class="news-meta">
+                            <i class="fa-solid fa-calendar-days"></i> ${tanggal}
+                        </div>
+                        <h2>${judul}</h2>
+                        <p>${isi.substring(0, 200)}${isi.length > 200 ? '...' : ''}</p>
+                        <a href="berita_detail.html?id=${id}" class="read-more-btn">
+                            Baca Selengkapnya <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>`;
+
+            container.innerHTML += card;
         });
-        closeChat.addEventListener("click", () => { chatbotWindow.style.display = "none"; });
 
-        function addMessage(text, sender) {
-            const div = document.createElement("div");
-            div.className = "chat-msg " + sender;
-            div.textContent = text;
-            chatBody.appendChild(div);
-            chatBody.scrollTop = chatBody.scrollHeight;
-            return div;
-        }
+    } catch(e) {
+        document.getElementById('newsList').innerHTML =
+            '<p style="text-align:center;color:#888;">Gagal memuat berita. Coba refresh halaman.</p>';
+        console.error(e);
+    }
+}
 
-        async function sendMessage() {
-            const message = chatInput.value.trim();
-            if (!message) return;
-            addMessage(message, "user");
-            chatInput.value = "";
-            const typingMsg = addMessage("Mengetik...", "bot typing");
-            try {
-                const res    = await fetch(SPACE_URL + "/gradio_api/call/predict", {
-                    method: "POST", headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ data: [message, []] })
-                });
-                if (!res.ok) throw new Error("gagal");
-                const result = await res.json();
-                const evtRes = await fetch(SPACE_URL + "/gradio_api/call/predict/" + result.event_id);
-                const txt    = await evtRes.text();
-                let reply = "Maaf, saya tidak mengerti pertanyaan Anda.";
-                for (const line of txt.split("\n")) {
-                    if (line.startsWith("data: ")) {
-                        try { const p = JSON.parse(line.replace("data: ","")); if (Array.isArray(p) && p[0]) reply = p[0]; } catch(e){}
-                    }
-                }
-                typingMsg.remove(); addMessage(reply, "bot");
-            } catch(e) {
-                typingMsg.remove(); addMessage("Maaf, terjadi kesalahan koneksi.", "bot");
-            }
+function parseCSV(row) {
+    const result = [];
+    let current  = '';
+    let inQuotes = false;
+    for (let i = 0; i < row.length; i++) {
+        const char = row[i];
+        if (char === '"') {
+            inQuotes = !inQuotes;
+        } else if (char === ',' && !inQuotes) {
+            result.push(current);
+            current = '';
+        } else {
+            current += char;
         }
-        sendBtn.addEventListener("click", sendMessage);
-        chatInput.addEventListener("keypress", e => { if (e.key === "Enter") sendMessage(); });
+    }
+    result.push(current);
+    return result;
+}
+
+loadBerita();
+
+// ============ CHATBOT SCRIPT (jangan hapus) ============
+document.addEventListener("DOMContentLoaded", function() {
+    const chatbotBtn    = document.getElementById("chatbotBtn");
+    const chatbotWindow = document.getElementById("chatbotWindow");
+    const closeChat     = document.getElementById("closeChat");
+    const chatBody      = document.getElementById("chatBody");
+    const chatInput     = document.getElementById("chatInput");
+    const sendBtn       = document.getElementById("sendBtn");
+    const SPACE_URL     = "https://nazilurrohmah-chatbot-ppdb-smp-nurul-islam.hf.space";
+
+    chatbotBtn.addEventListener("click", () => {
+        chatbotWindow.style.display = (chatbotWindow.style.display === "flex") ? "none" : "flex";
+        if (chatbotWindow.style.display === "flex") chatInput.focus();
     });
+    closeChat.addEventListener("click", () => { chatbotWindow.style.display = "none"; });
+
+    function addMessage(text, sender) {
+        const div = document.createElement("div");
+        div.className = "chat-msg " + sender;
+        div.textContent = text;
+        chatBody.appendChild(div);
+        chatBody.scrollTop = chatBody.scrollHeight;
+        return div;
+    }
+
+    async function sendMessage() {
+        const message = chatInput.value.trim();
+        if (!message) return;
+        addMessage(message, "user");
+        chatInput.value = "";
+        const typingMsg = addMessage("Mengetik...", "bot typing");
+        try {
+            const res    = await fetch(SPACE_URL + "/gradio_api/call/predict", {
+                method: "POST", headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ data: [message, []] })
+            });
+            if (!res.ok) throw new Error("gagal");
+            const result = await res.json();
+            const evtRes = await fetch(SPACE_URL + "/gradio_api/call/predict/" + result.event_id);
+            const txt    = await evtRes.text();
+            let reply = "Maaf, saya tidak mengerti pertanyaan Anda.";
+            for (const line of txt.split("\n")) {
+                if (line.startsWith("data: ")) {
+                    try { const p = JSON.parse(line.replace("data: ","")); if (Array.isArray(p) && p[0]) reply = p[0]; } catch(e){}
+                }
+            }
+            typingMsg.remove(); addMessage(reply, "bot");
+        } catch(e) {
+            typingMsg.remove(); addMessage("Maaf, terjadi kesalahan koneksi.", "bot");
+        }
+    }
+    sendBtn.addEventListener("click", sendMessage);
+    chatInput.addEventListener("keypress", e => { if (e.key === "Enter") sendMessage(); });
+});
 </script>
 </body>
 </html>
