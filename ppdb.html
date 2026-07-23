@@ -232,9 +232,17 @@
         const SPACE_URL     = "https://nazilurrohmah-chatbot-ppdb-smp-nurul-islam.hf.space";
 
         chatbotBtn.addEventListener("click", () => {
-            chatbotWindow.style.display = (chatbotWindow.style.display === "flex") ? "none" : "flex";
-            if (chatbotWindow.style.display === "flex") chatInput.focus();
+        chatbotWindow.style.display = (chatbotWindow.style.display === "flex") ? "none" : "flex";
+        if (chatbotWindow.style.display === "flex") chatInput.focus();
         });
+        
+        const innerBotBox = document.getElementById("innerBotBox");
+        if (innerBotBox) {
+        innerBotBox.addEventListener("click", () => {
+        chatbotWindow.style.display = "flex";
+        chatInput.focus();
+        });
+        }
         closeChat.addEventListener("click", () => { chatbotWindow.style.display = "none"; });
 
         function addMessage(text, sender) {
